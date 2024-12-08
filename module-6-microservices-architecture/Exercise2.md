@@ -13,8 +13,8 @@ In this exercise, you will learn how to create an Azure Storage Account and conf
 ## Prerequisites
 During this module you will also need 3 of the PowerShell variables used previously:
    - $Location - Azure region where you created your first api resource group
-   - $APIResourceGroup - Name of the Resource Group in which you have your Container APIs and Static Web App, from the first region
-   - $ManagedEnvironment - Name of your Managed Environment for containers in **$APIResourceGroup**
+   - $apiResourceGroup - Name of the Resource Group in which you have your Container APIs and Static Web App, from the first region
+   - $ManagedEnvironment - Name of your Managed Environment for containers in **$apiResourceGroup**
 
 ## Step 1: Create a Storage Account and Update the Container App Environment
 

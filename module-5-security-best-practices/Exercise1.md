@@ -1,5 +1,5 @@
 # Module 5: Security Best Practices
-This module covers advanced security architectures, including Zero Trust, data encryption, and threat protection. 
+This module covers advanced security architectures, including Zero Trust, data encryption, and threat protection.
 
 # Exercise 1
 In this exercise you will deploy a Private Endpoint for the CosmosDB resource so it can only be accessed privately.
@@ -15,7 +15,7 @@ To begin this module you will need the Azure resources that you deployed in the 
 
 During this module you will also need the following PowerShell variables used previously:
  - $Location - location of the first region deployed in Module 0
- - $APIResourceGroup  - name of your API Resource Group deployed in Module 1
+ - $apiResourceGroup  - name of your API Resource Group deployed in Module 1
  - $VnetName - name of your VNET deployed in Module 1
  - $DatabaseAccount - name of your CosmosDB resource deployed in Module 1
  - $DBResourceGroup - name of your Database Resource Group deployed in Module 1

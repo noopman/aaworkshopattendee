@@ -7,15 +7,15 @@ In this exercise you will deploy an **Azure Application Insights** resource that
 
 ## Learning objectives
    - Use Azure Application Insights for Web App monitoring
-   
+
 ## Prerequisites
 To begin this module you will need the Azure resources that you deployed in the previous modules.
 
 During this module you will also need the following PowerShell variables used previously:
  - $Location - location of the first region deployed in Module 0
- - $APIResourceGroup  - name of your API Resource Group deployed in Module 1
- - $StaticWeb - name of your Azure Static Web App resource
- - $GameContainerUrl - url of your Game API container
+ - $apiResourceGroup  - name of your API Resource Group deployed in Module 1
+ - $staticWebName - name of your Azure Static Web App resource
+ - $gameContainerUrl - url of your Game API container
  - $APIMUrl - endpoint for your Azure API Management resource(Gateway URL)
 
 
@@ -28,7 +28,7 @@ In order to use an Application Insights resource, it is recommended to link it t
 
 1.3 Create the Application Insights resource
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > If prompted inside your terminal to install the extension *application-insights*, press **y**.
 
 
@@ -39,11 +39,11 @@ To be able to deploy the version of the app with the Application Insights functi
 
 `app_location: "module-4-caching-strategies/Exercise_1/RockPaperScissors"`
 
-into 
+into
 
 `app_location: "module-8-observability-and-monitoring/Exercise_1/RockPaperScissors"`
 
-and 
+and
 
 `api_location: "module-4-caching-strategies/Exercise_1/RockPaperScissorsAPI"`
 
@@ -62,4 +62,3 @@ You need to copy the Connection String of your resource. You can find it in the 
 Now you can play around with your web application and it should automatically record events inside Application Insights.
 
 Open the [Azure portal](https://portal.azure.com) and navigate to your Application Insights Resource. You can now check the usage of the application, under the Usage tab. You can see the number of users of your application, or events regarding how they use the app, which pages they access etc.
-

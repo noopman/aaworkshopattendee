@@ -74,7 +74,7 @@ az account list-locations -o table
 - `<resource-group-location> = Your resource group location`
 
 ```bash
-az group create --name $APIResourceGroup --location $Location
+az group create --name $apiResourceGroup --location $Location
 ```
 
 1. **Create a resource-group for the database**
@@ -123,7 +123,7 @@ cd "<path-to-arm-deploy>"
 - Deploy the API arm
 
 ```bash
-az deployment group create --resource-group $APIResourceGroup --template-file azuredeployAPI.json --parameters containerapps_bot_api_name=$BotApi containerapps_game_api_name=$GameApi managedEnvironments_env_name=$ManagedEnvironment location=$Location
+az deployment group create --resource-group $apiResourceGroup --template-file azuredeployAPI.json --parameters containerapps_bot_api_name=$botApi containerapps_game_api_name=$gameApi managedEnvironments_env_name=$ManagedEnvironment location=$Location
 ```
 
 - Deploy the database arm
@@ -143,7 +143,7 @@ export StaticWeb="<Static-Web-App-Name>"
 ```
 
 ```bash
-az staticwebapp create --name $StaticWeb --resource-group $APIResourceGroup --source <github-repository-url> --branch <branch> --app-location "/module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissors" --api-location "/module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissorsAPI" --output-location "wwwroot" --login-with-github
+az staticwebapp create --name $staticWebName --resource-group $apiResourceGroup --source <github-repository-url> --branch <branch> --app-location "/module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissors" --api-location "/module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissorsAPI" --output-location "wwwroot" --login-with-github
 ```
 
 - `<Static-Web-App-Name> = Your Static Web App name`
@@ -169,7 +169,7 @@ export GameContainerHN="<game-container-host-name>"
 ```
 
 ```bash
-az staticwebapp appsettings set --name $StaticWeb --setting-names "GAMEAPI_URL=$GameContainerUrl" "BOTAPI_URL=$BotContainerUrl"
+az staticwebapp appsettings set --name $staticWebName --setting-names "GAMEAPI_URL=$gameContainerUrl" "BOTAPI_URL=$botContainerUrl"
 ```
 
 - `<bot-container-url> = Your Bot container api url`
@@ -200,7 +200,7 @@ cd "<your-statestore.yaml-path>"
 4. **Update the Managed Environment**
 
 ```bash
-az containerapp env dapr-component set --name $ManagedEnvironment --resource-group $APIResourceGroup --dapr-component-name statestore --yaml statestore.yaml
+az containerapp env dapr-component set --name $ManagedEnvironment --resource-group $apiResourceGroup --dapr-component-name statestore --yaml statestore.yaml
 ```
 
 ## Step 5: Configure environment variables for Azure Container Apps
@@ -208,13 +208,13 @@ az containerapp env dapr-component set --name $ManagedEnvironment --resource-gro
 1. **Configure environment variable for Game Container Api**
 
 ```bash
-az containerapp up --name $GameApi --resource-group $APIResourceGroup --image casianbara/gameapi-rockpaperscissors:latest --env-vars GAME_API_BOTAPI="$BotContainerUrl"
+az containerapp up --name $gameApi --resource-group $apiResourceGroup --image casianbara/gameapi-rockpaperscissors:latest --env-vars GAME_API_BOTAPI="$botContainerUrl"
 ```
 
 2. **Configure environment variable for Bot Container Api**
 
 ```bash
-az containerapp up --name $BotApi --resource-group $APIResourceGroup --image casianbara/botapi-rockpaperscissors:latest --env-vars BOT_API_SESSION_URL=$GameContainerUrl
+az containerapp up --name $botApi --resource-group $apiResourceGroup --image casianbara/botapi-rockpaperscissors:latest --env-vars BOT_API_SESSION_URL=$gameContainerUrl
 ```
 
 ## Step 6: Deploy the second Container App on another region
@@ -235,7 +235,7 @@ export Location2="<location-name>"
 1. **Run the create command**
 
 ```bash
-az group create --name $ResourceGroup2 --location $Location2
+az group create --name $apiResourceGroup2 --location $Location2
 ```
 
 3. **Create the environment**
@@ -245,7 +245,7 @@ export ManagedEnvironment2="<second-managed-environment-name>"
 ```
 
 ```bash
-az containerapp env create --name $ManagedEnvironment2 --resource-group $ResourceGroup2 --location $Location2
+az containerapp env create --name $ManagedEnvironment2 --resource-group $apiResourceGroup2 --location $Location2
 ```
 
 - `<second-managed-environment-name> = Your second managed environment name`
@@ -253,7 +253,7 @@ az containerapp env create --name $ManagedEnvironment2 --resource-group $Resourc
 4. **Update the Managed Environment**
 
 ```bash
-az containerapp env dapr-component set --name $ManagedEnvironment2 --resource-group $ResourceGroup2 --dapr-component-name statestore --yaml statestore.yaml
+az containerapp env dapr-component set --name $ManagedEnvironment2 --resource-group $apiResourceGroup2 --dapr-component-name statestore --yaml statestore.yaml
 ```
 
 5. **Create your second container app and save its host name in a variable for later**
@@ -263,7 +263,7 @@ export BotApi2="<second-botapi-container-name>"
 ```
 
 ```bash
-az containerapp create --name $BotApi2 --resource-group $ResourceGroup2 --environment $ManagedEnvironment2 --image  casianbara/botapi-rockpaperscissors:latest --target-port 8080 --ingress external --query properties.configuration.ingress.fqdn --env-vars BOT_API_SESSION_URL=$GameContainerUrl --enable-dapr --dapr-app-id botapi --dapr-app-port 8080
+az containerapp create --name $BotApi2 --resource-group $apiResourceGroup2 --environment $ManagedEnvironment2 --image  casianbara/botapi-rockpaperscissors:latest --target-port 8080 --ingress external --query properties.configuration.ingress.fqdn --env-vars BOT_API_SESSION_URL=$gameContainerUrl --enable-dapr --dapr-app-id botapi --dapr-app-port 8080
 ```
 
 ```bash
@@ -387,7 +387,7 @@ export GameApi2="<second-gameapi-container-name>"
 
 
 ```bash
-az containerapp create --name $GameApi2 --resource-group $ResourceGroup2 --environment $ManagedEnvironment2 --image  casianbara/gameapi-rockpaperscissors:latest --target-port 8080 --ingress external --query properties.configuration.ingress.fqdn --env-vars GAME_API_BOTAPI="$BotContainerUrl" --enable-dapr --dapr-app-id gameapi --dapr-app-port 8080
+az containerapp create --name $GameApi2 --resource-group $apiResourceGroup2 --environment $ManagedEnvironment2 --image  casianbara/gameapi-rockpaperscissors:latest --target-port 8080 --ingress external --query properties.configuration.ingress.fqdn --env-vars GAME_API_BOTAPI="$botContainerUrl" --enable-dapr --dapr-app-id gameapi --dapr-app-port 8080
 ```
 
 
@@ -475,25 +475,25 @@ export Endpoint2="https://<endpoint-url>"
 1. **Modify environment variables for Azure Container Apps**
 
 ```bash
-az containerapp up --name $GameApi --resource-group $APIResourceGroup --image casianbara/gameapi-rockpaperscissors:latest --env-vars GAME_API_BOTAPI=$Endpoint
+az containerapp up --name $gameApi --resource-group $apiResourceGroup --image casianbara/gameapi-rockpaperscissors:latest --env-vars GAME_API_BOTAPI=$Endpoint
 ```
 
 ```bash
-az containerapp up --name $BotApi --resource-group $APIResourceGroup --image casianbara/botapi-rockpaperscissors:latest --env-vars BOT_API_SESSION_URL=$Endpoint2
+az containerapp up --name $botApi --resource-group $apiResourceGroup --image casianbara/botapi-rockpaperscissors:latest --env-vars BOT_API_SESSION_URL=$Endpoint2
 ```
 
 ```bash
-az containerapp up --name $GameApi2 --resource-group $ResourceGroup2 --image casianbara/gameapi-rockpaperscissors:latest --env-vars GAME_API_BOTAPI=$Endpoint
+az containerapp up --name $GameApi2 --resource-group $apiResourceGroup2 --image casianbara/gameapi-rockpaperscissors:latest --env-vars GAME_API_BOTAPI=$Endpoint
 ```
 
 ```bash
-az containerapp up --name $BotApi2 --resource-group $ResourceGroup2 --image casianbara/botapi-rockpaperscissors:latest --env-vars BOT_API_SESSION_URL=$Endpoint2
+az containerapp up --name $BotApi2 --resource-group $apiResourceGroup2 --image casianbara/botapi-rockpaperscissors:latest --env-vars BOT_API_SESSION_URL=$Endpoint2
 ```
 
 2. **Modify environment variables for Static Web App**
 
 ```bash
-az staticwebapp appsettings set --name $StaticWeb --setting-names "GAMEAPI_URL=$Endpoint2" "BOTAPI_URL=$Endpoint"
+az staticwebapp appsettings set --name $staticWebName --setting-names "GAMEAPI_URL=$Endpoint2" "BOTAPI_URL=$Endpoint"
 ```
 
 3. Add `*` to **CORS** manually under **Settings** tab for Azure Container Apps created on second region from [Azure Portal](https://portal.azure.com/)

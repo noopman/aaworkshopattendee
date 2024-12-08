@@ -114,21 +114,21 @@ After deploying all resources using the button you need to go through **step 9**
 
 List of Instance details for deploying with button:
 
-- Region1_containerapps_bot_api_name = $BotApi
-- Region1_containerapps_game_api_name = $GameApi
+- Region1_containerapps_bot_api_name = $botApi
+- Region1_containerapps_game_api_name = $gameApi
 - Region1_managed Environments_env_name = $ManagedEnvironment
 - Location = $Location
 - Region2_containerapps_bot_api_name = $BotApi2
 - Region2_containerapps_game_api_name = $GameApi2
 - Region2_managed Environments_env_name = $ManagedEnvironment2
 - Location2 = $Location2
-- API Resource Group = $APIResourceGroup
-- API Resource Group2 = $ResourceGroup2
+- API Resource Group = $apiResourceGroup
+- API Resource Group2 = $apiResourceGroup2
 - Network Resource Group = $NetworkResourceGroup
 - DB Resource Group = $DBResourceGroup
 - Database Accounts_db_name = $DatabaseAccount
 - Profiles_frontdoor_name = $ProfileName
-- Static Sites_test_web_rps_we_name = $StaticWeb
+- Static Sites_test_web_rps_we_name = $staticWebName
 - Repository Url = `Your Github Repository url`
 - Branch = `The branch you want to use for deployment`
 - Repository Token = `Your Github token (PAT) value`
@@ -142,7 +142,7 @@ List of Instance details for deploying with button:
 - Botorigin2 = `Second origin name for bot`
 - Virtual Networks_vnet_name = $VnetName
 - Environment-subnet-name = $EnvironmentSubnet
-- Githubowner = $GitRepositoryOwner
+- Githubowner = $gitRepositoryOwner
 
 ## Testing your deployment
 

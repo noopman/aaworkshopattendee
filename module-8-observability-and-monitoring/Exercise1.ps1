@@ -8,9 +8,9 @@
 
 $WorkspaceName = "<analytics-workspace-name>"
 
-az monitor log-analytics workspace create --resource-group $APIResourceGroup --workspace-name $WorkspaceName --location $Location
+az monitor log-analytics workspace create --resource-group $apiResourceGroup --workspace-name $WorkspaceName --location $Location
 
-$WorkspaceId=az monitor log-analytics workspace show --resource-group $APIResourceGroup --workspace-name $WorkspaceName --query id -o tsv
+$WorkspaceId=az monitor log-analytics workspace show --resource-group $apiResourceGroup --workspace-name $WorkspaceName --query id -o tsv
 
 #1.2 Name your Application Insights Resource.
 
@@ -18,7 +18,7 @@ $InsightsName = "<application-insights-name>"
 
 # 1.3 Create the Application Insights resource
 
-az monitor app-insights component create --app $InsightsName --location $Location --resource-group $APIResourceGroup --workspace $WorkspaceID
+az monitor app-insights component create --app $InsightsName --location $Location --resource-group $apiResourceGroup --workspace $WorkspaceID
 
 # If prompted inside your terminal to install the extension *application-insights*, press **y**!
 
@@ -30,6 +30,6 @@ az monitor app-insights component create --app $InsightsName --location $Locatio
 
 $AppInsightsConnectionString = "<application-insights-connection-string>"
 
-az staticwebapp appsettings set --name $StaticWeb --setting-names "GAMEAPI_URL=$GameContainerUrl" "APIM_URL=$APIMUrl" "INSIGHTS_CONNECTION_STRING=$AppInsightsConnectionString"
+az staticwebapp appsettings set --name $staticWebName --setting-names "GAMEAPI_URL=$gameContainerUrl" "APIM_URL=$APIMUrl" "INSIGHTS_CONNECTION_STRING=$AppInsightsConnectionString"
 
 # ---------------------------------------------------------------------------------------------------------------------

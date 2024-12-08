@@ -2,22 +2,22 @@
 
 ## Estimated time: 20 minutes
 
-### Simulate a server failure
+## Simulate a server failure
 
 1. In the Azure Portal, access the resource where the BotAPI is deployed.
 
 2. Stop the resource from running to simulate a server overloading/failing.
 
-> [!IMPORTANT]
-> You need to stop both resources that you deployed for this exercise. Stopping only the main one will make the Azure Front Door to redirect to the other resource.
+   > [!IMPORTANT]
+   > You need to stop both resources that you deployed for this exercise. Stopping only the main one will make the Azure Front Door to redirect to the other resource.
 
 3. Try to play a game by inviting a bot. You won't be able to play the game as the bot you invited will never join. On a large scale application, this will mean that the users will flood the server with requests that the server won't be able to respond to.
 
- In order to solve this problem, we will use a **Circuit Breaker** pattern inside our web application so after a few failed requests, the clients will limit the rate of sending additional requests to the server.
+To solve this problem, we will use a **Circuit Breaker** pattern inside our web application so after a few failed requests, the clients will limit the rate of sending additional requests to the server.
 
- To solve this exercise you can either implement the Circuit Breaker yourself, or deploy the provided app with the implementation.
+To solve this exercise you can either implement the Circuit Breaker yourself, or deploy the provided app with the implementation.
 
- ### **Method 1**: Implementing the [Circuit Breaker](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-circuit-breaker-pattern) pattern
+### **Method 1**: Implementing the [Circuit Breaker](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-circuit-breaker-pattern) pattern
 
 1. First, clone the repository on your local machine(if you haven't yet). You will find the source code of exercise 1 and the start of exercise 2 at `module-1-azure-architecture-introduction/src/Exercise_1`.
 
@@ -66,7 +66,9 @@ public class BotService : IBotService
     }
 
 ````
+
 5. Now you should also modify the CheckBotAPI method so that the http call will be made using the Circuit Breaker. You need to modify the code inside FormPages.razor with the following example:
+
 ````c#
 @page "/"
 @using Microsoft.AspNetCore.WebUtilities
@@ -535,33 +537,24 @@ public class BotService : IBotService
     }
 }
 ````
- ### **Method 2**: Use the provided app
+
+## **Method 2**: Use the provided app
 
 If you had trouble implementing the Circuit Breaker, you can use the provided solution instead. You should find it by cloning the repository, under `module-1-azure-architecture-introduction/src/Exercise_2`.
 
 To be able to deploy the version of the app with the circuit breaker pattern, you need to change the deployment workflow under `./github/workflows`, more exactly, you have to change
 
-`app_location: "module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissors"`
+| Variable | Current value | New value |
+| -- | -- | -- |
+| app_location | "module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissors" | "module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissors" |
+| api_location | "module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissorsAPI" | "module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissorsAPI" |
 
-into 
-
-`app_location: "module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissors"`
-
-and 
-
-`api_location: "module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissorsAPI"`
-
-into
-
-`api_location: "module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissorsAPI"`
-
-### Redeploying the app
+## Redeploying the app
 
 By pushing any change to the repository, it will trigger the deployment workflow of the web app
 You can view the status of this workflow action in the **Actions** tab of your GitHub repository.
 
-### Retrying the app
-
+## Retrying the app
 
 By trying to add a bot with the new code deployed, you should now be able to see the new check feature.
 

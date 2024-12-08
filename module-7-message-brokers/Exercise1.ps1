@@ -2,7 +2,7 @@
 # Exercise 1
 
 # ---------------------------------------------------------------------------------------------------------------------
-	
+
 # Step 1: Deploy an Azure Event Grid Topic
 
 # 1.1 Create a new Resource Group for your Event Grid
@@ -16,7 +16,7 @@ az provider register --namespace Microsoft.EventGrid
 
 # Keep in mind that this action might take a while to finish!
 
-# 1.3 Create your Event Grid Topic 
+# 1.3 Create your Event Grid Topic
 
 $TopicName = "<topic-name>"
 az eventgrid topic create --name $TopicName -l $Location -g $GridResourceGroup
@@ -31,7 +31,7 @@ az eventgrid topic create --name $TopicName -l $Location -g $GridResourceGroup
 
 $TTL = 86400 # one day
 
-az containerapp up -n $StatsApi --resource-group $APIResourceGroup --image ghcr.io/$GitRepositoryOwner/statsapi-rockpaperscissors:module7-ex1 --registry-server ghcr.io --registry-username $GitRepositoryOwner --registry-password $GitPAT --env-vars STATS_API_DB_CONNECTION_STRING=$DB_Connection STATS_API_TTL=$TTL
+az containerapp up -n $StatsApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/statsapi-rockpaperscissors:module7-ex1 --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --env-vars STATS_API_DB_CONNECTION_STRING=$DB_Connection STATS_API_TTL=$TTL
 
 # 2.2 Store the Event Grid Credentials
 
@@ -40,7 +40,7 @@ $EventGridKey = "<topic-key>"
 
 # 2.3 Redeploy the GameAPI
 
-az containerapp up --name $GameApi --resource-group $APIResourceGroup --image ghcr.io/$GitRepositoryOwner/gameapi-rockpaperscissors:module7-ex1 --registry-server ghcr.io --registry-username $GitRepositoryOwner --registry-password $GitPAT --env-vars GAME_API_SIGNALR=$SignalREndpoint GAME_API_BOTAPI=$BotContainerUrl GAME_API_HOST=$GameContainerUrl GAME_API_SMTPSERVER=$SMTP GAME_API_SMTP_SENDER=$Sender GAME_API_STATSAPI=$StatsContainerUrl GAME_API_EVENT_GRID_ENDPOINT=$EventGridEndpoint GAME_API_EVENT_GRID_KEY=$EventGridKey
+az containerapp up --name $gameApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module7-ex1 --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --env-vars GAME_API_SIGNALR=$SignalREndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$SMTP GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$StatsContainerUrl GAME_API_EVENT_GRID_ENDPOINT=$EventGridEndpoint GAME_API_EVENT_GRID_KEY=$EventGridKey
 
 # ---------------------------------------------------------------------------------------------------------------------
 

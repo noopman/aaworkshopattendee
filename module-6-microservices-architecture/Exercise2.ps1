@@ -11,10 +11,10 @@ $StorageAccount="<enter Storage Account name>"
 
 # 1.2 Create the storage account
 
-az storage account create --name $StorageAccount --resource-group $APIResourceGroup --location $Location --sku Standard_RAGRS --kind StorageV2 --min-tls-version TLS1_2 --allow-blob-public-access true
+az storage account create --name $StorageAccount --resource-group $apiResourceGroup --location $Location --sku Standard_RAGRS --kind StorageV2 --min-tls-version TLS1_2 --allow-blob-public-access true
 
 # 1.3. Update the Container App environment to send logs to Azure Monitor
 
-az containerapp env update --name $ManagedEnvironment --resource-group $APIResourceGroup --logs-destination azure-monitor
+az containerapp env update --name $ManagedEnvironment --resource-group $apiResourceGroup --logs-destination azure-monitor
 
 # ----------------------------------------------------------------------------------------------------------------------

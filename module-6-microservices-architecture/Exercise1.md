@@ -21,12 +21,12 @@ In this exercise, you will create an Azure Key Vault to securely store API endpo
 ## Prerequisites
 During this module you will also need 7 of the PowerShell variables used previously:
    - $SignalREndpoint - SignalR connection string
-   - $APIResourceGroup - name of the Resource Group in which you have your Container APIs and Static Web App, from the first region
+   - $apiResourceGroup - name of the Resource Group in which you have your Container APIs and Static Web App, from the first region
    - $SMTP - connection string of your Azure Communication Service deployed in Module 2
-   - $GameApi - name of the Game Container API deployed in the first region
-   - $Sender - Azure Managed Domain MailFrom address
-   - $GameContainerUrl -  URL for your Game Container API
-   - $BotContainerUrl - URL for your Bot Container API
+   - $gameApi - name of the Game Container API deployed in the first region
+   - $senderDnR - Azure Managed Domain MailFrom address
+   - $gameContainerUrl -  URL for your Game Container API
+   - $botContainerUrl - URL for your Bot Container API
 
 ## Step 1: Create an Azure Key Vault
  Choose a name for your KeyVault and follow the commands from the .ps1 file

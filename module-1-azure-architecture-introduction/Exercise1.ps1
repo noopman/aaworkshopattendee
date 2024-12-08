@@ -286,8 +286,8 @@ $location2 = "<location-name>"
 # 5.1 Create the resource group.
 
 # Second API resource group name.
-$resourceGroup2 = "rg-$($prefix)-<resource-group-name>"
-az group create --name $resourceGroup2 --location $location2
+$apiResourceGroup2 = "rg-$($prefix)-<resource-group-name>"
+az group create --name $apiResourceGroup2 --location $location2
 
 # 5.2 Create the environment.
 
@@ -297,7 +297,7 @@ $managedEnvironment2 = "$($prefix)<second-managed-environment-name>"
 # Deploy a second managed environment on the second region, but not with ARM template, instead use the az containerapp command.
 az containerapp env create `
   --name $managedEnvironment2 `
-  --resource-group $resourceGroup2 `
+  --resource-group $apiResourceGroup2 `
   --logs-destination none `
   --location $location2
 
@@ -306,7 +306,7 @@ az containerapp env create `
 # Update environment with the statestore.yaml file.
 az containerapp env dapr-component set `
   --name $managedEnvironment2 `
-  --resource-group $resourceGroup2 `
+  --resource-group $apiResourceGroup2 `
   --dapr-component-name statestore `
   --yaml statestore.yaml
 
@@ -318,7 +318,7 @@ $botApi2 = "$($prefix)<second-botapi-container-name>"
 # Deploy the second bot container on the second region (in managed environment 2).
 az containerapp create `
   --name $botApi2 `
-  --resource-group $resourceGroup2 `
+  --resource-group $apiResourceGroup2 `
   --environment $managedEnvironment2 `
   --registry-server ghcr.io `
   --registry-username $gitRepositoryOwner `
@@ -332,7 +332,7 @@ az containerapp create `
   --dapr-app-port 8080
 
 # Second bot container hostname.
-$botContainerHN2 = Get-ContainerAppFqdn -resourceGroup $resourceGroup2 -containerAppName $botApi2
+$botContainerHN2 = Get-ContainerAppFqdn -resourceGroup $apiResourceGroup2 -containerAppName $botApi2
 
 #----------------------------------------------------------------------------------------------------------------------
 
@@ -511,7 +511,7 @@ $gameApi2 = "$($prefix)<second-gameapi-container-name>"
 # Deploy the second game container on the second region (in managed environment 2).
 az containerapp create `
   --name $gameApi2 `
-  --resource-group $resourceGroup2 `
+  --resource-group $apiResourceGroup2 `
   --environment $managedEnvironment2 `
   --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT `
   --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:latest `
@@ -658,7 +658,7 @@ az containerapp up `
 
 az containerapp up `
   --name $gameApi2 `
-  --resource-group $resourceGroup2 `
+  --resource-group $apiResourceGroup2 `
   --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:latest `
   --registry-server ghcr.io `
   --registry-username $gitRepositoryOwner `
@@ -667,7 +667,7 @@ az containerapp up `
 
 az containerapp up `
   --name $botApi2 `
-  --resource-group $resourceGroup2 `
+  --resource-group $apiResourceGroup2 `
   --image ghcr.io/$gitRepositoryOwner/botapi-rockpaperscissors:latest `
   --registry-server ghcr.io `
   --registry-username $gitRepositoryOwner `
@@ -684,12 +684,12 @@ az staticwebapp appsettings set `
 
 # Configure CORS for the bot api container in the second region.
 az containerapp ingress cors update `
-  --resource-group $resourceGroup2 `
+  --resource-group $apiResourceGroup2 `
   --name $botApi2 `
   --allowed-headers * --allowed-origins *
 
 # Configure CORS for the game api container in the second region.
 az containerapp ingress cors update `
-  --resource-group $resourceGroup2 `
+  --resource-group $apiResourceGroup2 `
   --name $gameApi2 `
   --allowed-headers * --allowed-origins *

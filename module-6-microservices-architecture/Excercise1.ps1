@@ -3,11 +3,11 @@
 
 # ---------------------------------------------------------------------------------------------------------------------
 
-# Step 1: Create an Azure Key Vault 
+# Step 1: Create an Azure Key Vault
 
 $KeyVault="<enter KeyVault name>"
 
-az keyvault create --name $KeyVault --resource-group $APIResourceGroup
+az keyvault create --name $KeyVault --resource-group $apiResourceGroup
 
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -21,7 +21,7 @@ $SubscriptionId="<subscription-id>"
 
 # 2.2 Create a role assignment for Key Vault Secrets Officer:
 
- az role assignment create --assignee $SubscriptionUPN --role "Key Vault Secrets Officer" --scope "/subscriptions/$SubscriptionId/resourceGroups/$APIResourceGroup/providers/Microsoft.KeyVault/vaults/$KeyVault"
+ az role assignment create --assignee $SubscriptionUPN --role "Key Vault Secrets Officer" --scope "/subscriptions/$SubscriptionId/resourceGroups/$apiResourceGroup/providers/Microsoft.KeyVault/vaults/$KeyVault"
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ az keyvault secret set --name ACS --vault-name $KeyVault --value $SMTP
 # 4.1 Create a Managed Identity
 
 $Identity="<managed-identity-name>"
-az identity create -g $APIResourceGroup -n $Identity
+az identity create -g $apiResourceGroup -n $Identity
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ az identity create -g $APIResourceGroup -n $Identity
 # 5.2 Apply the secrets as environment variables for your game API container:
 
 ```powershell
- az containerapp up --name $GameApi --resource-group $APIResourceGroup --image ghcr.io/$GitRepositoryOwner/gameapi-rockpaperscissors:module2-signalr --registry-server ghcr.io --registry-username $GitRepositoryOwner --registry-password $GitPAT --env-vars GAME_API_SIGNALR="secretref:signalrconnectionstring" GAME_API_BOTAPI=$BotContainerUrl GAME_API_HOST=$GameContainerUrl GAME_API_SMTPSERVER="secretref:acsconnectionstring" GAME_API_SMTP_SENDER=$Sender
+ az containerapp up --name $gameApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module2-signalr --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --env-vars GAME_API_SIGNALR="secretref:signalrconnectionstring" GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER="secretref:acsconnectionstring" GAME_API_SMTP_SENDER=$senderDnR
 ```
 
 # ----------------------------------------------------------------------------------------------------------------------

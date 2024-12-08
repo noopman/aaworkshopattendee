@@ -9,7 +9,7 @@ In this exercise, you will update a JMeter script to target your containerized g
 ## Learning objectives
    - Deploy and configure Azure Load Testing
    - Implement auto-scaling
-   
+
 ## Prerequisites
 To begin this module you will need the Azure resources that you deployed in both **Module 1: Azure Architecture Introduction** and **Module 2: External Communication**
 
@@ -22,7 +22,7 @@ We will use a JMeter script to define and execute load tests, simulating user ac
    - **!bot-container-api-HN!** = HostName from Bot Container Api
 
 ## Step 2: Create an Azure Load Testing resource and use the test
- 1. Using [Azure Portal](https://portal.azure.com/), create an **Azure Load Test** in your designated **$APIResourceGroup** and **$Location**.
+ 1. Using [Azure Portal](https://portal.azure.com/), create an **Azure Load Test** in your designated **$apiResourceGroup** and **$Location**.
  2. Navigate to the **Tests** tab and click on **Create** to "Upload a script."
 
 ![](../module-3-scaling-strategies/images/image1.png)
