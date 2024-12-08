@@ -24,7 +24,7 @@ During this module you will also need the following PowerShell variables used pr
 - $gitPAT - your GitHub token (PAT) value
 - $gitRepositoryOwner - your GitHub owner name (lowercase)
 - $EmailResourceGroup - name of the Resource Group deployed at Module 0
-- $Location - location of the first region deployed
+- $location - location of the first region deployed
 - $ApiResourceGroup - name of the Resource Group in which you have your Container APIs and Static Web App, from the first region
 - $staticWebName - name of your Static Web App resource
 - $gameApi - name of the Game Container API deployed in the first region

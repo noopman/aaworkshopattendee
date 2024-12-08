@@ -12,7 +12,7 @@ $StorageAccount = "<enter Storage Account name>"
 az storage account create `
   --name $StorageAccount `
   --resource-group $apiResourceGroup `
-  --location $Location `
+  --location $location `
   --sku Standard_RAGRS `
   --kind StorageV2 `
   --min-tls-version TLS1_2 `

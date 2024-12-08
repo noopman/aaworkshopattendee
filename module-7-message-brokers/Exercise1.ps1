@@ -1,14 +1,14 @@
 # Module 7: Message Brokers
+#----------------------------------------------------------------------------------------------------------------------
 # Exercise 1
 
 # ---------------------------------------------------------------------------------------------------------------------
-
 # Step 1: Deploy an Azure Event Grid Topic
 
 # 1.1 Create a new Resource Group for your Event Grid
 
-$GridResourceGroup = "<event-grid-resour-group-name>"
-az group create --name $GridResourceGroup --location $Location
+$gridResourceGroup = "rg-$($prefix)-<event-grid-resource-group-name>"
+az group create --name $gridResourceGroup --location $location
 
 # 1.2 Enable Event Grid resource provider for your subscription if it was not enabled before
 
@@ -16,13 +16,18 @@ az provider register --namespace Microsoft.EventGrid
 
 # Keep in mind that this action might take a while to finish!
 
+# 1.0 Install the Event Grid az cli extension
+
+az extension list --output table
+az extension add --name eventgrid
+
 # 1.3 Create your Event Grid Topic
 
-$TopicName = "<topic-name>"
-az eventgrid topic create --name $TopicName -l $Location -g $GridResourceGroup
+$topicName = "$($prefix)-<topic-name>"
+
+az eventgrid topic create --name $topicName --resource-group $gridResourceGroup --location $location
 
 # ---------------------------------------------------------------------------------------------------------------------
-
 # Step 2: Deploy the new versions of your containers
 
 # 2.1 Redeploy the StatsAPI
@@ -31,30 +36,41 @@ az eventgrid topic create --name $TopicName -l $Location -g $GridResourceGroup
 
 $TTL = 86400 # one day
 
-az containerapp up -n $StatsApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/statsapi-rockpaperscissors:module7-ex1 --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --env-vars STATS_API_DB_CONNECTION_STRING=$DB_Connection STATS_API_TTL=$TTL
+az containerapp up `
+  --name $StatsApi `
+  --resource-group $apiResourceGroup `
+  --image ghcr.io/$gitRepositoryOwner/statsapi-rockpaperscissors:module7-ex1 `
+  --registry-server ghcr.io `
+  --registry-username $gitRepositoryOwner `
+  --registry-password $gitPAT `
+  --env-vars STATS_API_DB_CONNECTION_STRING=$DB_Connection STATS_API_TTL=$TTL
 
 # 2.2 Store the Event Grid Credentials
 
-$EventGridEndpoint = "<topic-endpoint>"
-$EventGridKey = "<topic-key>"
+$eventGridEndpoint = "<topic-endpoint>"
+$eventGridKey = "<topic-key>"
 
 # 2.3 Redeploy the GameAPI
 
-az containerapp up --name $gameApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module7-ex1 --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --env-vars GAME_API_SIGNALR=$signalrEndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$smtp GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$StatsContainerUrl GAME_API_EVENT_GRID_ENDPOINT=$EventGridEndpoint GAME_API_EVENT_GRID_KEY=$EventGridKey
+az containerapp up `
+  --name $gameApi `
+  --resource-group $apiResourceGroup `
+  --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module7-ex1 `
+  --registry-server ghcr.io `
+  --registry-username $gitRepositoryOwner `
+  --registry-password $gitPAT `
+  --env-vars GAME_API_SIGNALR=$signalrEndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$smtp GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$StatsContainerUrl GAME_API_EVENT_GRID_ENDPOINT=$eventGridEndpoint GAME_API_EVENT_GRID_KEY=$eventGridKey
 
 # ---------------------------------------------------------------------------------------------------------------------
-
 # Step 3: Create a subscription for your StatsAPI
 
 # 3.1 Define your subscription endpoint and the Resource ID of your Topic
 $SubEndpoint = "<stats-api-container-url>/api/eventhandler"
 
-$TopicResourceId=az eventgrid topic show --resource-group $GridResourceGroup --name $topicname --query "id" --output tsv
+$topicResourceId = az eventgrid topic show --name $topicName --resource-group $gridResourceGroup --query "id" --output tsv
 
 # 3.2 Create a Subscription for the Topic
 
-$SubName = "<event-subscription-name>"
+$SubName = "$($prefix)-<event-subscription-name>"
 
-az eventgrid event-subscription create --source-resource-id $topicresourceid --name $SubName --endpoint $SubEndpoint
-
-# ---------------------------------------------------------------------------------------------------------------------
+az eventgrid event-subscription create --name $SubName --source-resource-id $topicResourceId --endpoint $SubEndpoint
