@@ -129,7 +129,7 @@ az deployment group create --resource-group $apiResourceGroup --template-file az
 - Deploy the database arm
 
 ```bash
-az deployment group create --resource-group$DBResourceGroup --template-file azuredeployDB.json --parameters databaseAccounts_db_name=$DatabaseAccount location=$Location
+az deployment group create --resource-group$DBResourceGroup --template-file azuredeployDB.json --parameters databaseAccounts_db_name=$cosmosDbAccount location=$Location
 ```
 
 At the end of this step you can open [Azure Portal](https://portal.azure.com/) and see your deployed resources: Bot Container API, Game Container API, Container App Environment, Virtual Network and a Cosmos DB.

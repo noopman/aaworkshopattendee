@@ -126,7 +126,7 @@ List of Instance details for deploying with button:
 - API Resource Group2 = $apiResourceGroup2
 - Network Resource Group = $NetworkResourceGroup
 - DB Resource Group = $DBResourceGroup
-- Database Accounts_db_name = $DatabaseAccount
+- Database Accounts_db_name = $cosmosDbAccount
 - Profiles_frontdoor_name = $ProfileName
 - Static Sites_test_web_rps_we_name = $staticWebName
 - Repository Url = `Your Github Repository url`
@@ -140,7 +140,7 @@ List of Instance details for deploying with button:
 - Gameorigin2 = `Second origin name for game`
 - Botorigin1 = `First origin name for bot`
 - Botorigin2 = `Second origin name for bot`
-- Virtual Networks_vnet_name = $VnetName
+- Virtual Networks_vnet_name = $vnetName
 - Environment-subnet-name = $EnvironmentSubnet
 - Githubowner = $gitRepositoryOwner
 

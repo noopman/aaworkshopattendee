@@ -1,28 +1,28 @@
-# Module 5: Security Best Practices
-This module covers advanced security architectures, including Zero Trust, data encryption, and threat protection.
+# Module 5 Exercise 1
 
-# Exercise 1
 In this exercise you will deploy a Private Endpoint for the CosmosDB resource so it can only be accessed privately.
 
 ## Estimated time: TODO minutes
 
 ## Learning objectives
-   - Secure your CosmosDB by implementing Private Endpoints
+
+- Secure your CosmosDB by implementing Private Endpoints.
 
 ## Prerequisites
 
 To begin this module you will need the Azure resources that you deployed in the previous modules.
 
 During this module you will also need the following PowerShell variables used previously:
- - $Location - location of the first region deployed in Module 0
- - $apiResourceGroup  - name of your API Resource Group deployed in Module 1
- - $VnetName - name of your VNET deployed in Module 1
- - $DatabaseAccount - name of your CosmosDB resource deployed in Module 1
- - $DBResourceGroup - name of your Database Resource Group deployed in Module 1
+
+- $Location - location of the first region deployed in Module 0
+- $apiResourceGroup  - name of your API Resource Group deployed in Module 1
+- $vnetName - name of your VNET deployed in Module 1
+- $cosmosDbAccount - name of your CosmosDB resource deployed in Module 1
+- $DBResourceGroup - name of your Database Resource Group deployed in Module 1
 
 ## Step 1: Create a Private Endpoint for CosmosDB
 
-You can create the Private Endpoint by following the commands provided in the `Exercise1.ps1` file.
+You can create the Private Endpoint by following the commands provided in [Exercise1.ps1](./Exercise1.ps1).
 
 ## Step 2: Test the application
 

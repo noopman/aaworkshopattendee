@@ -1,54 +1,66 @@
-# ----------------------------------------------------------------------------------------------------------------------
-
 # Module 5: Security Best Practices
-
-# ----------------------------------------------------------------------------------------------------------------------
-
+#----------------------------------------------------------------------------------------------------------------------
 # Exercise 1
 
 # ----------------------------------------------------------------------------------------------------------------------
-
 # Step 1: Create a Private Endpoint for CosmosDB
 
-# 1. Update the subnet to disable private endpoint network policies. You first need to define your Default Subnet name, which will be "default" as defined in the ARM from Module 1, so you shouldn't change it.
+# 1. Update the subnet to disable private endpoint network policies.
+#    You first need to define your Default Subnet name,
+#    which will be "default" as defined in the ARM from Module 1, so you shouldn't change it.
 
-$DefaultSubnetName="default"
+$defaultSubnetName = "default"
 
-az network vnet subnet update -n $DefaultSubnetName -g $apiResourceGroup --vnet-name $VnetName  --disable-private-endpoint-network-policies true
-
+az network vnet subnet update `
+  --name $defaultSubnetName
+  --resource-group $apiResourceGroup `
+  --vnet-name $vnetName `
+  --disable-private-endpoint-network-policies true
 
 # 2. You need to save the Resource ID for the CosmosDB in order to create a private endpoint.
 
-$DbResourceId = az cosmosdb show -n $DatabaseAccount -g $DBResourceGroup --query id --output tsv
+$cosmosDbId = az cosmosdb show -n $cosmosDbAccount -g $DBResourceGroup --query id --output tsv
 
 # 3. Create the Private Endpoint for the CosmosDB.
 
-$PrivateEndpointName="<private-endpoint-name>"
+$pepName = "<private-endpoint-name>"
+$conName = "<private-link-service-connection-name>"
 
-$ConnectionName="<private-link-service-connection-name>"
-
-az network private-endpoint create -n $PrivateEndpointName -g $apiResourceGroup --vnet-name $VnetName --subnet $DefaultSubnetName --private-connection-resource-id $DbResourceId --group-ids Sql --connection-name $ConnectionName
+az network private-endpoint create `
+  --name $pepName `
+  --resource-group $apiResourceGroup `
+  --vnet-name $vnetName `
+  --subnet $defaultSubnetName `
+  --private-connection-resource-id $cosmosDbId `
+  --group-ids Sql `
+  --connection-name $conName
 
 # 4. To use the newly created Private Endpoint, you have to create a Private DNS Zone resource.
 
-$ZoneName="privatelink.documents.azure.com"
+$zoneName = "privatelink.documents.azure.com"
 
-az network private-dns zone create -g $apiResourceGroup -n $ZoneName
+az network private-dns zone create --name $zoneName --resource-group $apiResourceGroup
 
 # 5. The DNS Zone needs to be linked the to Virtual Network.
 
-$ZoneLinkName="<zone-link-name>"
+$zoneLinkName = "<zone-link-name>"
 
-az network private-dns link vnet create -g $apiResourceGroup -n $ZoneLinkName --zone-name $ZoneName --virtual-network $VnetName --registration-enabled false
+az network private-dns link vnet create `
+  --name $zoneLinkName `
+  --resource-group $apiResourceGroup `
+  --zone-name $zoneName `
+  --virtual-network $vnetName `
+  --registration-enabled false
 
 # 6. Now you can create a DNS Zone Group associated with the Private Endpoint.
 
-$ZoneGroupName="<zone-group-name>"
+$zoneGroupName = "<zone-group-name>"
 
-az network private-endpoint dns-zone-group create -g $apiResourceGroup --endpoint-name $PrivateEndpointName -n $ZoneGroupName --private-dns-zone $ZoneName --zone-name "zone"
-
-# ----------------------------------------------------------------------------------------------------------------------
-
-# Step 2: Test the application
+az network private-endpoint dns-zone-group create `
+  --name $zoneGroupName `
+  --resource-group $apiResourceGroup `
+  --endpoint-name $pepName `
+  --private-dns-zone $zoneName `
+  --zone-name "zone"
 
 # ----------------------------------------------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-# Exercise 1
+# Module 4 Exercise 1
 
 In this exercise you will deploy a new API that generates a leaderboard for your Rock, Paper, Scissors game.
 
