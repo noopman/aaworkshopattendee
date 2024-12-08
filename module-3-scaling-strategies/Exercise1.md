@@ -18,7 +18,7 @@ To begin this module you will need the Azure resources that you deployed in both
 We will use a JMeter script to define and execute load tests, simulating user activity on our application. This helps us measure performance under different traffic conditions and identify potential bottlenecks using Azure Load Testing.
 
  1. Open the **HTTP_Request.jmx** file in the JMeter folder.
- 2. Replace the placeholder values with the correct Azure container app hostnames.
+ 2. Replace the placeholder values with the correct Azure container app host names.
 
 - **!game-container-api-HN!** = HostName from Game Container Api
 - **!bot-container-api-HN!** = HostName from Bot Container Api
@@ -52,13 +52,13 @@ We will use a JMeter script to define and execute load tests, simulating user ac
 3. Increase the container app's capacity:
    - Go to the **Scale** tab under the **Application** section.
    - Adjust the **min and max replicas** for both the game and bot containers to improve performance. Make sure to scale both game and bot api containers.
-   ![](../module-3-scaling-strategies/images/image2.png)
+   ![Min and max replica count](../module-3-scaling-strategies/images/image2.png)
 
 ## Step 4: Rerun the same test deployed on Azure Load Testing
 
 1. Return to the Azure Load Test in the portal.
 2. Select the previous test and click Run to execute it again, or choose to rerun your last existing test run.
-   ![](../module-3-scaling-strategies/images/image3.png)
+   ![Azure load test rerun](../module-3-scaling-strategies/images/image3.png)
 
 ## Step 5: Readjust scales on container apps
 
