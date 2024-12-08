@@ -5,6 +5,18 @@
 #----------------------------------------------------------------------------------------------------------------------
 # Step 1: Redeploy the apps
 
+
+$gameApi
+$botApi
+$apiResourceGroup
+$gitRepositoryOwner
+#$gitPAT
+$signalrEndpoint
+$botContainerUrl
+$gameContainerUrl
+$smtp
+$senderDnR
+
 az containerapp up `
   --name $gameApi `
   --resource-group $apiResourceGroup `
@@ -23,6 +35,7 @@ az containerapp up `
 #----------------------------------------------------------------------------------------------------------------------
 # Step 4: Redeploy static web app with APIM url
 
-$APIMUrl="<your-apim-url>" # <your-apim-url> = your Gateway url from APIM
+# Gateway url from APIM
+$apimUrl = "<your-apim-url>"
 
-az staticwebapp appsettings set --name $staticWebName --setting-names "GAMEAPI_URL=$gameContainerUrl" "APIM_URL=$APIMUrl"
+az staticwebapp appsettings set --name $staticWebName --setting-names "GAMEAPI_URL=$gameContainerUrl" "APIM_URL=$apimUrl"

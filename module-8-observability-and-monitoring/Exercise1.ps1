@@ -20,6 +20,11 @@ $workspaceId = az monitor log-analytics workspace show --resource-group $apiReso
 
 $insightsName = "<application-insights-name>"
 
+# 1.0 Check if the extension *application-insights* is installed. If not, install it.
+
+az extension list --output table
+az extension add --name application-insights
+
 # 1.3 Create the Application Insights resource
 
 az monitor app-insights component create `
@@ -28,7 +33,7 @@ az monitor app-insights component create `
   --location $location `
   --workspace $workspaceId
 
-# If prompted inside your terminal to install the extension *application-insights*, press **y**!
+# If prompted to install the extension *application-insights*, press **y**!
 
 # ---------------------------------------------------------------------------------------------------------------------
 ## Step 2: Redeploy the Static Web App with the new version

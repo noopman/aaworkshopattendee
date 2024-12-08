@@ -6,16 +6,16 @@ In this exercise you will establish secure links between the client side and API
 
 ## Learning objectives
 
-- Implement API Management
-- Configure SSL termination
-- Implement rate throttling
+- Implement API Management.
+- Configure SSL termination.
+- Implement rate throttling.
 
 ## Prerequisites
 
 For this exercise, you will need the following PowerShell variable used previously:
 
-- $staticWebName - name of your Static Web App resource
-- $APIM - name of your API Management deployed at Module 0
+- $staticWebName - name of your Static Web App resource.
+- $APIM - name of your API Management deployed at Module 0.
 
 ## Step 1: Redeploy the apps
 
@@ -51,7 +51,7 @@ To ensure that only your Web Application will be able to access the APIs, you sh
 
    ![APIM API CORS settings](../module-2-external-communication/images/image4.png)
 
-2. Select **CORS** policy, go to the **Full** tab, and add your static web url to **"Allowed Origins"** field. Make sure to enable **GET** and **POST** methods, set the allowed headers and exposed headers to *, then press the save button.
+2. Select **CORS** policy, go to the **Full** tab, and add your url to the static web app in the **"Allowed Origins"** field. Make sure to enable **GET** and **POST** methods, set the allowed headers and exposed headers to *, then press the save button.
 
    ![APIM API CORS origins](../module-2-external-communication/images/image5.png)
 
@@ -61,8 +61,8 @@ To be able to deploy the version of the app with the APIM functionality, you nee
 
 | Variable | New value |
 | -- | -- |
-| app_location | "module-2-external-communication/src/Exercise_2/RockPaperScissors" |
-| api_location | "module-2-external-communication/src/Exercise_2/RockPaperScissorsAPI" |
+| app_location | "/module-2-external-communication/src/Exercise_2/RockPaperScissors" |
+| api_location | "/module-2-external-communication/src/Exercise_2/RockPaperScissorsAPI" |
 
 Then, you can change the environment variables of the Static Web App with the new APIM_URL value.
 

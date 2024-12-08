@@ -48,7 +48,7 @@ Update the StatsAPI with the new image. This includes an endpoint that we will u
 
 ### 2.2 Store the Event Grid Credentials
 
-To use the Event Grid inside the WebAPI, you need to store a couple of variables inside your terminal.
+To use the Event Grid inside the WebAPI, you need to store a couple of variables.
 
   1. Store the URL of the Event Grid. You can find it in your [Azure Portal](https://portal.azure.com/) by navigating to your Event Grid Topic resource, on the **Overview** tab, next to **Topic Endpoint**
 

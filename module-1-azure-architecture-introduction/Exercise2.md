@@ -542,12 +542,12 @@ public class BotService : IBotService
 
 If you had trouble implementing the Circuit Breaker, you can use the provided solution instead. You should find it by cloning the repository, under `module-1-azure-architecture-introduction/src/Exercise_2`.
 
-To be able to deploy the version of the app with the circuit breaker pattern, you need to change the deployment workflow under `./github/workflows`, more exactly, you have to change
+To deploy that version of the app, with the circuit breaker pattern implemented, you change the deployment workflow for the SWA under `./github/workflows`:
 
-| Variable | Current value | New value |
-| -- | -- | -- |
-| app_location | "module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissors" | "module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissors" |
-| api_location | "module-1-azure-architecture-introduction/src/Exercise_1/RockPaperScissorsAPI" | "module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissorsAPI" |
+| Variable | New value |
+| -- | -- |
+| app_location | "/module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissors" |
+| api_location | "/module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissorsAPI" |
 
 ## Redeploying the app
 

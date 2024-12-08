@@ -63,7 +63,7 @@ To get the connection string of your SignalR Service, you need to access the new
 
 3. The Email Communication Service also needs a **Email Communication Services Domain** in order to use it for sending emails.
 
-## Step 4: Set the Connection String and the Sender Address inside your terminal and redeploy the apps
+## Step 4: Set the Connection String and the Sender Address and redeploy the apps
 
 To see the changes of the application, you will have to redeploy the API's container and the Web Application.
 
@@ -74,8 +74,8 @@ To see the changes of the application, you will have to redeploy the API's conta
 
    | Variable | New value |
    | -- |  -- |
-   | app_location  | "module-2-external-communication/src/Exercise_1/RockPaperScissors" |
-   | api_location  | "module-2-external-communication/src/Exercise_1/RockPaperScissorsAPI" |
+   | app_location  | "/module-2-external-communication/src/Exercise_1/RockPaperScissors" |
+   | api_location  | "/module-2-external-communication/src/Exercise_1/RockPaperScissorsAPI" |
 
    Then, you can change the environment variables of the Static Web App with the new SignalR connection string and the sender email address.
 

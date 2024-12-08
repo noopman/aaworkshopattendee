@@ -74,7 +74,7 @@ az communication create `
 # To use the email functionality, you need an Azure Email Communication Service.
 
 # Name your email service
-$emailServiceName = "$prefix-emlsrv"
+$emailServiceName = "$prefix-<email-service-name>"
 
 # Create the Email Communication Service
 az communication email create `
@@ -93,7 +93,7 @@ az communication email domain create `
   --location "Global"
 
 #----------------------------------------------------------------------------------------------------------------------
-# Step 4: Set the Connection String and the Sender Address inside your terminal and redeploy the apps
+# Step 4: Set the Connection String and the Sender Address and redeploy the apps
 #         To see the changes of the application, you will have to redeploy the API's container and the Web Application.
 
 # 4.1. You can find the Connection String in the Azure Portal.
@@ -102,7 +102,7 @@ az communication email domain create `
 # Your SMTP Connection String.
 $smtp = "<SMTP-connection-string>"
 
-# Alternative:
+# Alternative way to get the SMTP Connection String using the Azure CLI:
 # $smtp = az communication list-key --name $acsName --resource-group $emailResourceGroup --query primaryConnectionString --output tsv
 
 # 4.2 Save the DoNotReply email address from which the emails will be sent.
@@ -111,7 +111,7 @@ $smtp = "<SMTP-connection-string>"
 # Your no-reply email address.
 $senderDnR = "<Sender>"
 
-<# Alternative:
+<# Alternative get using the Azure CLI:
 $mailFromSenderDomain = az communication email domain show `
   --resource-group $emailResourceGroup `
   --name AzureManagedDomain `
