@@ -26,39 +26,55 @@ you to use the portal to monitor your deployments at any point.
 The steps below with instructions correspond to the same steps in the [Exercise1.ps1](./Exercise1.ps1) script. Here you will find the commands to run in your terminal.
 
 ## Step 1: Create the resource group and deploy the ARM
-1. Create your resource-group for APIs
-2. Create a resource-group for the database
-3. Set the variables used on deployment
-4. Deploy the ARM using configured variables
-   - Set the path to your ARM deploy
-   - Deploy the API ARM
-   - Deploy the database ARM
+
+1. Create your resource-group for APIs.
+2. Create a resource-group for the database.
+3. Set the variables used on deployment.
+4. Deploy the ARM templates for the APIs and the database.
+    A Container Apps environment is a secure boundary around one or more container apps and jobs. It provides isolation, network boundaries, and resource management for containerized applications.
+    Here are some features and use cases for Container Apps environments:
+    - Virtual Network: Each environment can be associated with a virtual network to enforce secure boundaries.
+    - Multiple Container Apps: Multiple container apps within the same environment share the same virtual network and logging destination.
+    - Multi-Service Integration: You can integrate Azure Functions and Azure Spring Apps within a Container Apps environment.
+5. Deploy the ARM templates for the database.
+    Azure Cosmos DB is a globally distributed, multi-model database service designed to provide high availability, low latency, and scalability. It supports multiple data models, including document, key-value, graph, and column-family data models. Here are some key features:
+    - Global Distribution: Automatically replicates data across any number of Azure regions.
+    - Multi-Model Support: Supports SQL, MongoDB, Cassandra, Gremlin, and Table APIs.
+    - Guaranteed Low Latency: Offers single-digit millisecond response times.
+    - High Availability: Provides 99.999% availability SLA for both reads and writes.
+    - Elastic Scalability: Scales throughput and storage elastically and independently.
+
 At the end of this step you can open [Azure Portal](https://portal.azure.com/) and see your deployed resources: Bot Container API, Game Container API, Container App Environment, Virtual Network and a Cosmos DB.
 
-## Step 2: Create an Azure Static Web App 
+## Step 2: Create an Azure Static Web App
 
-1. Deploy your static web app in the same Resource Group with the APIs
-2. Configure an environment variable to connect your Static Web App with your game Container Api
-3. At the end of this step you will be able to see your Static Web app deployed in [Azure Portal](https://portal.azure.com/) and you can even open your web app and it should look like this: ![](../module-1-azure-architecture-introduction/images/image3.png)
+1. Deploy your static web app in the same Resource Group with the APIs.
+2. Configure an environment variable to connect your Static Web App with your game Container Api.
+3. At the end of this step you will be able to see your Static Web app deployed in [Azure Portal](https://portal.azure.com/) and you can even open your web app! It should look like this: ![The app look and feel](../module-1-azure-architecture-introduction/images/image3.png)
 
 ## Step 3: Configure dapr statestore using Cosmos DB
+
 1. Install az containerapp extension
 2. Configuring statestore using **statestore.yaml** file from the local *infra* folder``
 3. Open the file and edit the following variables: `<cosmos-url>` and `<cosmos-primary-key>`
     - `<cosmos-url> = Your Cosmos DB url`
     - `<cosmos-primary-key> = Your Cosmos DB primary key`
 4. Update the Managed Environment
+
 ## Step 4: Configure environment variables for Azure Container Apps
+
 1. Configure environment variable for Game Container Api
 2. Configure environment variable for Bot Container Api
 
 ## Step 5: Deploy the second Container App on another region
+
 1. Create the resource group
-2. Run the create command
-3. Create the environment
-4. Update the Managed Environment
-5. Create your second Container App and save its host name in a variable for later
+2. Create the environment
+3. Update the Managed Environment
+4. Create your second Container App and save its host name in a variable for later
+
 ## Step 6: Configure Front Door to connect both regions from bot Container Api
+
 1. Create a new resource-group for Front Door
 2. Create Azure Front Door profile
 3. Create Azure Front Door endpoint
@@ -68,16 +84,18 @@ At the end of this step you can open [Azure Portal](https://portal.azure.com/) a
    - Create second origin
 6. Create Front Door route
 7. List endpoint to get the Front Door link and save it on a variable
+
 ## Step 7: Configure Front Door to connect both regions from game Container Api
 
 1. Create gameapi container on second region
 2. Create another endpoint
 3. Create a second origin group
-4. Create origins  
+4. Create origins
    - Create first game origin
    - Create second game origin
 5. Create Front Door route for game
 6. List second endpoint to get the Front Door link and save it on a variable
+
 ## Step 8: Use the endpoints to configure Azure Container Apps and Static Web
 
 1. Modify environment variables for Azure Container Apps

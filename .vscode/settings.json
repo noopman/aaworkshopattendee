@@ -6,6 +6,7 @@
     "BOTAPI",
     "Botgroup",
     "Botorigin",
+    "botroute",
     "containerapp",
     "containerapps",
     "Dapr",
@@ -19,6 +20,7 @@
     "githubrepositoryurl",
     "Magnus",
     "Mårtensson",
+    "rockpaperscissors",
     "statestore",
     "vnet",
     "wwwroot"
