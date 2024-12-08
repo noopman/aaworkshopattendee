@@ -10,7 +10,7 @@ az containerapp up `
   --resource-group $apiResourceGroup `
   --registry-server ghcr.io --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module2-ex2 `
   --registry-username $gitRepositoryOwner --registry-password $gitPAT `
-  --env-vars GAME_API_SIGNALR=$SignalREndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$SMTP GAME_API_SMTP_SENDER=$senderDnR
+  --env-vars GAME_API_SIGNALR=$signalrEndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$smtp GAME_API_SMTP_SENDER=$senderDnR
 
 az containerapp up `
   --name $botApi `

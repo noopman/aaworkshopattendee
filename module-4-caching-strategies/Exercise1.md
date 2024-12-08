@@ -21,7 +21,7 @@ During this module you will also need the following PowerShell variables used pr
 - $gameApi - name of your Game API resource.
 - $botContainerUrl - URL for your Bot Container API.
 - $gameContainerUrl - URL for your Game Container API.
-- $SMTP - connection string of your Azure Communication Service deployed in Module 2.
+- $smtp - connection string of your Azure Communication Service deployed in Module 2.
 - $senderDnR - your noreply email from the Email Communication Service Domain resource deployed in Module 2.
 
 ## Step 1: Deploy StatsAPI

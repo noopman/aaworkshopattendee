@@ -40,7 +40,7 @@ $EventGridKey = "<topic-key>"
 
 # 2.3 Redeploy the GameAPI
 
-az containerapp up --name $gameApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module7-ex1 --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --env-vars GAME_API_SIGNALR=$SignalREndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$SMTP GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$StatsContainerUrl GAME_API_EVENT_GRID_ENDPOINT=$EventGridEndpoint GAME_API_EVENT_GRID_KEY=$EventGridKey
+az containerapp up --name $gameApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module7-ex1 --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --env-vars GAME_API_SIGNALR=$signalrEndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$smtp GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$StatsContainerUrl GAME_API_EVENT_GRID_ENDPOINT=$EventGridEndpoint GAME_API_EVENT_GRID_KEY=$EventGridKey
 
 # ---------------------------------------------------------------------------------------------------------------------
 

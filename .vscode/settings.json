@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "acsconnectionstring",
     "APIM",
     "appsettings",
     "azuredeploy",
@@ -22,8 +23,11 @@
     "Magnus",
     "Mårtensson",
     "privatelink",
+    "RAGRS",
     "rockpaperscissors",
+    "secretref",
     "Signalr",
+    "signalrconnectionstring",
     "singalr",
     "SMTPSERVER",
     "statestore",
