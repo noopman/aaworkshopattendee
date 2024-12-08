@@ -1,9 +1,8 @@
-# ----------------------------------------------------------------------------------------------------------------------
-
+# Module 2: External Communication
+#----------------------------------------------------------------------------------------------------------------------
 # Exercise 1
 
 # ----------------------------------------------------------------------------------------------------------------------
-
 # Step 1: Deploy StatsAPI
 
 $StatsApi="<stats-container-name>"
@@ -15,19 +14,14 @@ $TTL="<data-time-to-live-seconds>"
 az containerapp create -n $StatsApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/statsapi-rockpaperscissors:module4-ex1 --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --environment $ManagedEnvironment --ingress external --target-port 8080 --query properties.configuration.ingress.fqdn --env-vars STATS_API_DB_CONNECTION_STRING=$DB_Connection STATS_API_TTL=$TTL
 
 # ----------------------------------------------------------------------------------------------------------------------
-
-# Step 2: Add StatsAPI to Azure API Management
-
-# ----------------------------------------------------------------------------------------------------------------------
-
 # Step 3: Redeploy GameAPI and the web app
 
 $StatsContainerUrl="<stats-container-url>"
 
-az containerapp up --name $gameApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module4-ex1 --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --env-vars GAME_API_SIGNALR=$SignalREndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$SMTP GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$StatsContainerUrl
-
-# ----------------------------------------------------------------------------------------------------------------------
-
-# Step 4: Test the leaderboard
-
-# ----------------------------------------------------------------------------------------------------------------------
+az containerapp up `
+  --name $gameApi `
+  --resource-group $apiResourceGroup `
+  --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module4-ex1 `
+  --registry-server ghcr.io `
+  --registry-username $gitRepositoryOwner --registry-password $gitPAT `
+  --env-vars GAME_API_SIGNALR=$SignalREndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$SMTP GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$StatsContainerUrl
