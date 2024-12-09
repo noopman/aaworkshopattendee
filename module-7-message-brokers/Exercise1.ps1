@@ -5,16 +5,15 @@
 # ---------------------------------------------------------------------------------------------------------------------
 # Step 1: Deploy an Azure Event Grid Topic
 
-# 1.1 Create a new Resource Group for your Event Grid
+# 1.1 Enable Event Grid resource provider for your subscription if it was not enabled before
+
+az provider register --namespace Microsoft.EventGrid
+az provider show --namespace Microsoft.EventGrid --query "registrationState"
+
+# 1.2 Create a new Resource Group for your Event Grid
 
 $gridResourceGroup = "rg-$($prefix)-<event-grid-resource-group-name>"
 az group create --name $gridResourceGroup --location $location
-
-# 1.2 Enable Event Grid resource provider for your subscription if it was not enabled before
-
-az provider register --namespace Microsoft.EventGrid
-
-# Keep in mind that this action might take a while to finish!
 
 # 1.0 Install the Event Grid az cli extension
 
@@ -24,8 +23,10 @@ az extension add --name eventgrid
 # 1.3 Create your Event Grid Topic
 
 $topicName = "$($prefix)-<topic-name>"
-
-az eventgrid topic create --name $topicName --resource-group $gridResourceGroup --location $location
+az eventgrid topic create `
+  --name $topicName `
+  --resource-group $gridResourceGroup `
+  --location $location
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Step 2: Deploy the new versions of your containers
@@ -45,7 +46,7 @@ az containerapp up `
   --registry-password $gitPAT `
   --env-vars STATS_API_DB_CONNECTION_STRING=$dConnection STATS_API_TTL=$ttl
 
-# 2.2 Store the Event Grid Credentials
+# 2.2 Fetch the Event Grid Credentials
 
 $eventGridEndpoint = "<topic-endpoint>"
 $eventGridKey = "<topic-key>"
@@ -65,12 +66,18 @@ az containerapp up `
 # Step 3: Create a subscription for your StatsAPI
 
 # 3.1 Define your subscription endpoint and the Resource ID of your Topic
-$SubEndpoint = "<stats-api-container-url>/api/eventhandler"
+$subscriptionEndpoint = "<stats-api-container-url>/api/eventhandler"
 
-$topicResourceId = az eventgrid topic show --name $topicName --resource-group $gridResourceGroup --query "id" --output tsv
+$topicResourceId = az eventgrid topic show `
+  --name $topicName `
+  --resource-group $gridResourceGroup `
+  --query "id" --output tsv
 
 # 3.2 Create a Subscription for the Topic
 
-$SubName = "$($prefix)-<event-subscription-name>"
+$subscriptionName = "$($prefix)-<event-subscription-name>"
 
-az eventgrid event-subscription create --name $SubName --source-resource-id $topicResourceId --endpoint $SubEndpoint
+az eventgrid event-subscription create `
+  --name $subscriptionName `
+  --source-resource-id $topicResourceId `
+  --endpoint $subscriptionEndpoint

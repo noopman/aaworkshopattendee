@@ -31,12 +31,16 @@ During this module you will also need the following PowerShell variables used pr
 
 ## Step 1: Deploy an Azure Event Grid Topic
 
-### 1.1 Create a new Resource Group for your Event Grid
+### 1.1 Enable Event Grid resource provider for your subscription if it was not enabled before
 
-### 1.2 Enable Event Grid resource provider for your subscription if it was not enabled before
+All Azure Resources belong to a resource provider. For optimizing the performance of Azure, not all resource providers are enabled by default. If you haven't used Event Grid before, you might need to enable the Event Grid resource provider for your subscription.
+
+[Exercise1.ps1](./Exercise1.ps1 ':include :type=code powershell')
 
 > [!NOTE]
-> Keep in mind that this action might take a while to finish.
+> This action might take a little while to finish.
+
+### 1.2 Create a new Resource Group for your Event Grid
 
 ### 1.3 Create your Event Grid Topic
 
@@ -46,7 +50,7 @@ During this module you will also need the following PowerShell variables used pr
 
 Update the StatsAPI with the new image. This includes an endpoint that we will use later to establish an Event Grid Subscription
 
-### 2.2 Store the Event Grid Credentials
+### 2.2 Fetch the Event Grid Credentials
 
 To use the Event Grid inside the WebAPI, you need to store a couple of variables.
 
@@ -71,4 +75,4 @@ The StatsAPI app is configured so that the path where the container will listen 
 
 Now you can test the application by playing a game inside your Static Web App.
 
-The leaderboard will now update on every game that is played, updating the cache of the CosmosDB. The data will still be cached the same way, but you won't have that problem of cache invalidation you had at Module 4. By rising the value of TTL, it also means that the calculations needed for updated the leaderboard will be made less frequently, essentially saving Request Units.
+The leaderboard will now update on every game that is played, updating the cache of the CosmosDB. The data will still be cached the same way, but you won't have that problem of cache invalidation you had at Module 4. By rising the value of TTL, it also means that the calculations needed for updated the leaderboard will be made less frequently, essentially saving CosmosDb Request Unit cost.
