@@ -34,7 +34,7 @@ az eventgrid topic create --name $topicName --resource-group $gridResourceGroup 
 
 # You can set the TTL to a higher value as now it will also update on game finish.
 
-$TTL = 86400 # one day
+$ttl = 86400 # one day
 
 az containerapp up `
   --name $statsApi `
@@ -43,7 +43,7 @@ az containerapp up `
   --registry-server ghcr.io `
   --registry-username $gitRepositoryOwner `
   --registry-password $gitPAT `
-  --env-vars STATS_API_DB_CONNECTION_STRING=$dConnection STATS_API_TTL=$TTL
+  --env-vars STATS_API_DB_CONNECTION_STRING=$dConnection STATS_API_TTL=$ttl
 
 # 2.2 Store the Event Grid Credentials
 

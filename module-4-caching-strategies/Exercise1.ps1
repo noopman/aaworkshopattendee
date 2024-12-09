@@ -9,7 +9,7 @@ $statsApi = "<stats-container-name>"
 
 $dConnection = "<DB-connection-string>"
 
-$TTL = "<data-time-to-live-seconds>"
+$ttl = "<data-time-to-live-seconds>"
 
 az containerapp create `
   --name $statsApi `
@@ -20,7 +20,7 @@ az containerapp create `
   --ingress external `
   --target-port 8080 `
   --query properties.configuration.ingress.fqdn `
-  --env-vars STATS_API_DB_CONNECTION_STRING=$dConnection STATS_API_TTL=$TTL
+  --env-vars STATS_API_DB_CONNECTION_STRING=$dConnection STATS_API_TTL=$ttl
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Step 3: Redeploy GameAPI and the web app
