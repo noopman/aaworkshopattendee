@@ -18,7 +18,7 @@ During this module you will also need 3 of the PowerShell variables used previou
 
 - $location - Azure region where you created your first api resource group
 - $apiResourceGroup - Name of the Resource Group in which you have your Container APIs and Static Web App, from the first region
-- $ManagedEnvironment - Name of your Managed Environment for containers in **$apiResourceGroup**
+- $managedEnvironment - Name of your Managed Environment for containers in **$apiResourceGroup**
 
 ## Step 1: Create a Storage Account and Update the Container App Environment
 

@@ -5,18 +5,29 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # Step 1: Deploy StatsAPI
 
-$StatsApi="<stats-container-name>"
+$statsApi = "<stats-container-name>"
 
-$DB_Connection="<DB-connection-string>"
+$dConnection = "<DB-connection-string>"
 
-$TTL="<data-time-to-live-seconds>"
+#! What is this value supposed to be?
+$TTL = "<data-time-to-live-seconds>"
 
-az containerapp create -n $StatsApi --resource-group $apiResourceGroup --image ghcr.io/$gitRepositoryOwner/statsapi-rockpaperscissors:module4-ex1 --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT --environment $ManagedEnvironment --ingress external --target-port 8080 --query properties.configuration.ingress.fqdn --env-vars STATS_API_DB_CONNECTION_STRING=$DB_Connection STATS_API_TTL=$TTL
+#! This deploys but it crashes. What is the issue?
+az containerapp create `
+  --name $statsApi `
+  --resource-group $apiResourceGroup `
+  --registry-server ghcr.io --registry-username $gitRepositoryOwner --registry-password $gitPAT `
+  --image ghcr.io/$gitRepositoryOwner/statsapi-rockpaperscissors:module4-ex1 `
+  --environment $managedEnvironment `
+  --ingress external `
+  --target-port 8080 `
+  --query properties.configuration.ingress.fqdn `
+  --env-vars STATS_API_DB_CONNECTION_STRING=$dConnection STATS_API_TTL=$TTL
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Step 3: Redeploy GameAPI and the web app
 
-$StatsContainerUrl="<stats-container-url>"
+$StatsContainerUrl = "<stats-container-url>"
 
 az containerapp up `
   --name $gameApi `

@@ -37,13 +37,13 @@ az eventgrid topic create --name $topicName --resource-group $gridResourceGroup 
 $TTL = 86400 # one day
 
 az containerapp up `
-  --name $StatsApi `
+  --name $statsApi `
   --resource-group $apiResourceGroup `
   --image ghcr.io/$gitRepositoryOwner/statsapi-rockpaperscissors:module7-ex1 `
   --registry-server ghcr.io `
   --registry-username $gitRepositoryOwner `
   --registry-password $gitPAT `
-  --env-vars STATS_API_DB_CONNECTION_STRING=$DB_Connection STATS_API_TTL=$TTL
+  --env-vars STATS_API_DB_CONNECTION_STRING=$dConnection STATS_API_TTL=$TTL
 
 # 2.2 Store the Event Grid Credentials
 

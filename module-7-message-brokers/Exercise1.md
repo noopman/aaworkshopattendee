@@ -19,8 +19,8 @@ During this module you will also need the following PowerShell variables used pr
 - $location - location of the first region deployed in Module 0.
 - $apiResourceGroup  - name of your API Resource Group deployed in Module 1.
 - $gameApi - name of your Game API resource.
-- $StatsApi - name of your Stats API resource.
-- $DB_Connection - CosmosDB Connection String.
+- $statsApi - name of your Stats API resource.
+- $dConnection - CosmosDB Connection String.
 - $gameContainerUrl - URL for your Game Container API.
 - $botContainerUrl - url of your Bot API container.
 - $signalrEndpoint - endpoint for your Azure SignalR Resource.

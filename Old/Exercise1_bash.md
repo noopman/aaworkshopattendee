@@ -123,7 +123,7 @@ cd "<path-to-arm-deploy>"
 - Deploy the API arm
 
 ```bash
-az deployment group create --resource-group $apiResourceGroup --template-file azuredeployAPI.json --parameters containerapps_bot_api_name=$botApi containerapps_game_api_name=$gameApi managedEnvironments_env_name=$ManagedEnvironment location=$location
+az deployment group create --resource-group $apiResourceGroup --template-file azuredeployAPI.json --parameters containerapps_bot_api_name=$botApi containerapps_game_api_name=$gameApi managedEnvironments_env_name=$managedEnvironment location=$location
 ```
 
 - Deploy the database arm
@@ -200,7 +200,7 @@ cd "<your-statestore.yaml-path>"
 4. **Update the Managed Environment**
 
 ```bash
-az containerapp env dapr-component set --name $ManagedEnvironment --resource-group $apiResourceGroup --dapr-component-name statestore --yaml statestore.yaml
+az containerapp env dapr-component set --name $managedEnvironment --resource-group $apiResourceGroup --dapr-component-name statestore --yaml statestore.yaml
 ```
 
 ## Step 5: Configure environment variables for Azure Container Apps

@@ -116,7 +116,7 @@ List of Instance details for deploying with button:
 
 - Region1_containerapps_bot_api_name = $botApi
 - Region1_containerapps_game_api_name = $gameApi
-- Region1_managed Environments_env_name = $ManagedEnvironment
+- Region1_managed Environments_env_name = $managedEnvironment
 - Location = $location
 - Region2_containerapps_bot_api_name = $BotApi2
 - Region2_containerapps_game_api_name = $GameApi2

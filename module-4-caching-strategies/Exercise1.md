@@ -17,7 +17,7 @@ During this module you will also need the following PowerShell variables used pr
 - $gitPAT - your GitHub token (PAT) value.
 - $gitRepositoryOwner - your GitHub owner name (lowercase).
 - $apiResourceGroup - name of the Resource Group in which you have your Container APIs and Static Web App, from the first region.
-- $ManagedEnvironment - name of the Managed Environment for the first region.
+- $managedEnvironment - name of the Managed Environment for the first region.
 - $gameApi - name of your Game API resource.
 - $botContainerUrl - URL for your Bot Container API.
 - $gameContainerUrl - URL for your Game Container API.
@@ -35,7 +35,7 @@ To find the Connection String of the CosmosDB:
 3. On the side menu, under the **Settings** tab, click **Keys**.
 4. The Connection String is under **PRIMARY CONNECTION STRING**.
 
-To deploy the StatsAPI container, run the commands from the `Exercise.ps1` file, found at this step.
+To deploy the StatsAPI container, run the commands from [Exercise.ps1](./Exercise.ps1).
 
 ## Step 2: Add StatsAPI to Azure API Management
 

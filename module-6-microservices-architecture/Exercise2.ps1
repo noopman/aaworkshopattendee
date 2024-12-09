@@ -20,4 +20,4 @@ az storage account create `
 
 # 1.2 Update the Container App environment to send logs to Azure Monitor
 
-az containerapp env update --name $ManagedEnvironment --resource-group $apiResourceGroup --logs-destination azure-monitor
+az containerapp env update --name $managedEnvironment --resource-group $apiResourceGroup --logs-destination azure-monitor
