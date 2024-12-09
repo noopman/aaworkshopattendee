@@ -25,7 +25,7 @@ We will use a JMeter script to define and execute load tests, simulating user ac
 
 ## Step 2: Create an Azure Load Testing resource and use the test
 
-1. Using [Azure Portal](https://portal.azure.com/), create an **Azure Load Test** in your designated **$apiResourceGroup** and **$location**.
+1. Using [Azure Portal](https://portal.azure.com/), create an **Azure Load Testing** in your designated **apiResourceGroup** and **location**.
 2. Navigate to the **Tests** tab and click on **Create** to "Upload a script."
 
    ![Azure Load Tests - tests](../module-3-scaling-strategies/images/image1.png)
