@@ -7,18 +7,19 @@
 
 # 1.1 Deploy a Log Analytics Workspace Resource and save its ID.
 
-$workspaceName = "<analytics-workspace-name>"
+$workspaceName = "law-$($prefix)-<analytics-workspace-name>"
 
-az monitor log-analytics workspace create `
+$workspaceId = az monitor log-analytics workspace create `
   --resource-group $apiResourceGroup `
   --workspace-name $workspaceName `
-  --location $location
+  --location $location | ConvertFrom-Json | Select-Object -ExpandProperty id
 
-$workspaceId = az monitor log-analytics workspace show --resource-group $apiResourceGroup --workspace-name $workspaceName --query id -o tsv
+# Alternatively, you can also read the workspace ID from the created resource.:
+# $workspaceId = az monitor log-analytics workspace show --resource-group $apiResourceGroup --workspace-name $workspaceName --query id -o tsv
 
 #1.2 Name your Application Insights Resource.
 
-$insightsName = "<application-insights-name>"
+$insightsName = "appi-$($prefix)-<application-insights-name>"
 
 # 1.0 Check if the extension *application-insights* is installed. If not, install it.
 
@@ -40,9 +41,9 @@ az monitor app-insights component create `
 
 # 2.2 Redeploy your Static Web App, and add the **INSIGHTS_CONNECTION_STRING** Environment Variable. Set its value to be the Connection String you just copied.
 
-$AppInsightsConnectionString = "<application-insights-connection-string>"
+$applicationInsightsConStr = "<application-insights-connection-string>"
 
 az staticwebapp appsettings set `
   --name $staticWebName `
-  --resource-group $staticWebResourceGroup `
-  --setting-names "INSIGHTS_CONNECTION_STRING=$AppInsightsConnectionString"
+  --resource-group $appResourceGroup `
+  --setting-names "INSIGHTS_CONNECTION_STRING=$applicationInsightsConStr"

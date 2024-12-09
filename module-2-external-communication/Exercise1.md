@@ -78,8 +78,8 @@ To see the changes of the application, you will have to redeploy the API's conta
 
    | Variable | New value |
    | -- |  -- |
-   | app_location  | "/module-2-external-communication/src/Exercise_1/RockPaperScissors" |
-   | api_location  | "/module-2-external-communication/src/Exercise_1/RockPaperScissorsAPI" |
+   | app_location  | /module-2-external-communication/src/Exercise_1/RockPaperScissors |
+   | api_location  | /module-2-external-communication/src/Exercise_1/RockPaperScissorsAPI |
 
    Then, you can change the environment variables of the Static Web App with the new SignalR connection string and the sender email address.
 

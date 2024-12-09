@@ -61,8 +61,8 @@ To be able to deploy the version of the app with the APIM functionality, you nee
 
 | Variable | New value |
 | -- | -- |
-| app_location | "/module-2-external-communication/src/Exercise_2/RockPaperScissors" |
-| api_location | "/module-2-external-communication/src/Exercise_2/RockPaperScissorsAPI" |
+| app_location | /module-2-external-communication/src/Exercise_2/RockPaperScissors |
+| api_location | /module-2-external-communication/src/Exercise_2/RockPaperScissorsAPI |
 
 Then, you can change the environment variables of the Static Web App with the new APIM_URL value.
 

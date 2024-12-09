@@ -6,7 +6,7 @@ In this exercise you will deploy an **Azure Application Insights** resource that
 
 ## Learning objectives
 
-- Use Azure Application Insights for Web App monitoring
+- Use Azure Application Insights for Web App monitoring.
 
 ## Prerequisites
 
@@ -14,11 +14,11 @@ To begin this module you will need the Azure resources that you deployed in the 
 
 During this module you will also need the following PowerShell variables used previously:
 
-- $location - location of the first region deployed in Module 0
-- $apiResourceGroup  - name of your API Resource Group deployed in Module 1
-- $staticWebName - name of your Azure Static Web App resource
-- $gameContainerUrl - url of your Game API container
-- $apimUrl - endpoint for your Azure API Management resource(Gateway URL)
+- $location - location of the first region deployed in Module 0.
+- $apiResourceGroup  - name of your API Resource Group deployed in Module 1.
+- $staticWebName - name of your Azure Static Web App resource.
+- $gameContainerUrl - url of your Game API container.
+- $apimUrl - endpoint for your Azure API Management resource(Gateway URL).
 
 ## Step 1: Deploy an Azure Application Insights resource
 
@@ -43,8 +43,8 @@ To deploy the version of the app with the Application Insights functionality, yo
 
 | Variable | New value |
 | -- | -- |
-| app_location | "/module-8-observability-and-monitoring/Exercise_1/RockPaperScissors" |
-| api_location | "/module-8-observability-and-monitoring/Exercise_1/RockPaperScissorsAPI" |
+| app_location | /module-8-observability-and-monitoring/Exercise_1/RockPaperScissors |
+| api_location | /module-8-observability-and-monitoring/Exercise_1/RockPaperScissorsAPI |
 
 You need to copy the Connection String of your resource. You can find it in the [Azure portal](https://portal.azure.com), by navigating to your newly created Application Insights resource, on the **Overview** tab next to **Connection String**.
 

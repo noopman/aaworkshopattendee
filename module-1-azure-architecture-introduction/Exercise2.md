@@ -546,8 +546,8 @@ To deploy that version of the app, with the circuit breaker pattern implemented,
 
 | Variable | New value |
 | -- | -- |
-| app_location | "/module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissors" |
-| api_location | "/module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissorsAPI" |
+| app_location | /module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissors |
+| api_location | /module-1-azure-architecture-introduction/src/Exercise_2/RockPaperScissorsAPI |
 
 ## Redeploying the app
 

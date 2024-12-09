@@ -60,8 +60,8 @@ To be able to deploy the version of the app with the leaderboard functionality, 
 
 | Variable | New value |
 | -- | -- |
-| app_location | "/module-4-caching-strategies/Exercise_1/RockPaperScissors" |
-| api_location | "/module-4-caching-strategies/Exercise_1/RockPaperScissorsAPI" |
+| app_location | /module-4-caching-strategies/Exercise_1/RockPaperScissors |
+| api_location | /module-4-caching-strategies/Exercise_1/RockPaperScissorsAPI |
 
 To redeploy the Game API, run the commands from [Exercise.ps1](./Exercise.ps1).
 
