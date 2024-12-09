@@ -6,19 +6,19 @@ In this exercise, you will learn how to create an Azure Storage Account and conf
 
 ## Learning objectives
 
-- Create and Configure an Azure Storage Account
-- Enable Logging for Azure Container Apps
-- Set Up Diagnostic Settings in Azure Portal
-- Access and Analyze Logs
-- Understand Logging and Monitoring Best Practices
+- Create and Configure an Azure Storage Account.
+- Enable Logging for Azure Container Apps.
+- Set Up Diagnostic Settings in Azure Portal.
+- Access and Analyze Logs.
+- Understand Logging and Monitoring Best Practices.
 
 ## Prerequisites
 
 During this module you will also need 3 of the PowerShell variables used previously:
 
-- $location - Azure region where you created your first api resource group
-- $apiResourceGroup - Name of the Resource Group in which you have your Container APIs and Static Web App, from the first region
-- $managedEnvironment - Name of your Managed Environment for containers in **$apiResourceGroup**
+- $location - Azure region where you created your first api resource group.
+- $apiResourceGroup - Name of the Resource Group in which you have your Container APIs and Static Web App, from the first region.
+- $managedEnvironment - Name of your Managed Environment for containers in the API Resource Group.
 
 ## Step 1: Create a Storage Account and Update the Container App Environment
 

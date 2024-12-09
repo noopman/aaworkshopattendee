@@ -7,10 +7,11 @@
 
 # 1.1 Create the storage account
 
-$StorageAccount = "<enter Storage Account name>"
+# lowercase, numbers, and a total of 3-24 characters
+$storageAccountName = "st$($prefix)<Storage-Account-name>"
 
 az storage account create `
-  --name $StorageAccount `
+  --name $storageAccountName `
   --resource-group $apiResourceGroup `
   --location $location `
   --sku Standard_RAGRS `
