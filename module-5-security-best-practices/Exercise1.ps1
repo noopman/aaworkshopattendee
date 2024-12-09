@@ -10,21 +10,20 @@
 #    which will be "default" as defined in the ARM from Module 1, so you shouldn't change it.
 
 $defaultSubnetName = "default"
-
 az network vnet subnet update `
-  --name $defaultSubnetName
+  --name $defaultSubnetName `
   --resource-group $apiResourceGroup `
   --vnet-name $vnetName `
   --disable-private-endpoint-network-policies true
 
 # 2. You need to save the Resource ID for the CosmosDB to create a private endpoint.
 
-$cosmosDbId = az cosmosdb show -n $cosmosDbAccount -g $DBResourceGroup --query id --output tsv
+$cosmosDbId = az cosmosdb show -n $cosmosDbAccount -g $dbResourceGroup --query id --output tsv
 
 # 3. Create the Private Endpoint for the CosmosDB.
 
-$pepName = "<private-endpoint-name>"
-$conName = "<private-link-service-connection-name>"
+$pepName = "pep-$($prefix)-<private-endpoint-name>"
+$conName = "con-$($prefix)-<private-link-service-connection-name>"
 
 az network private-endpoint create `
   --name $pepName `
@@ -38,12 +37,11 @@ az network private-endpoint create `
 # 4. To use the newly created Private Endpoint, you have to create a Private DNS Zone resource.
 
 $zoneName = "privatelink.documents.azure.com"
-
 az network private-dns zone create --name $zoneName --resource-group $apiResourceGroup
 
 # 5. The DNS Zone needs to be linked the to Virtual Network.
 
-$zoneLinkName = "<zone-link-name>"
+$zoneLinkName = "privatelink-$($prefix)-<zone-link-name>"
 
 az network private-dns link vnet create `
   --name $zoneLinkName `
@@ -54,7 +52,7 @@ az network private-dns link vnet create `
 
 # 6. Now you can create a DNS Zone Group associated with the Private Endpoint.
 
-$zoneGroupName = "<zone-group-name>"
+$zoneGroupName = "zone-$($prefix)-<zone-group-name>"
 
 az network private-endpoint dns-zone-group create `
   --name $zoneGroupName `

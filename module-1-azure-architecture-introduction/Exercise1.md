@@ -125,7 +125,7 @@ List of Instance details for deploying with button:
 - API Resource Group = $apiResourceGroup
 - API Resource Group2 = $apiResourceGroup2
 - Network Resource Group = $NetworkResourceGroup
-- DB Resource Group = $DBResourceGroup
+- DB Resource Group = $dbResourceGroup
 - Database Accounts_db_name = $cosmosDbAccount
 - Profiles_frontdoor_name = $ProfileName
 - Static Sites_test_web_rps_we_name = $staticWebName

@@ -18,7 +18,7 @@ During this module you will also need the following PowerShell variables used pr
 - $apiResourceGroup  - name of your API Resource Group deployed in Module 1
 - $vnetName - name of your VNET deployed in Module 1
 - $cosmosDbAccount - name of your CosmosDB resource deployed in Module 1
-- $DBResourceGroup - name of your Database Resource Group deployed in Module 1
+- $dbResourceGroup - name of your Database Resource Group deployed in Module 1
 
 ## Step 1: Create a Private Endpoint for CosmosDB
 
