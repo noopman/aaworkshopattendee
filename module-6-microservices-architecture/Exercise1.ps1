@@ -3,7 +3,7 @@
 # Exercise 1
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Step 1: Create an Azure Key vault
+# Step 1: Create an Azure Key Vault
 
 $kvResourceGroup = "rg-$($prefix)-<resource-group-name>"
 az group create --name $kvResourceGroup --location $location
@@ -12,7 +12,7 @@ $keyVault = "kv-$($prefix)-keys"
 az keyvault create --name $keyVault --resource-group $kvResourceGroup
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Step 2: Assign Roles for Key vault Access
+# Step 2: Assign Roles for Key Vault Access
 
 # 2.1 Define your subscription information:
 
@@ -28,7 +28,7 @@ az role assignment create `
   --scope "/subscriptions/$subscriptionId/resourceGroups/$kvResourceGroup/providers/Microsoft.KeyVault/vaults/$keyVault"
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Step 3: Add Your Endpoints as Secrets to the Key vault
+# Step 3: Add Your Endpoints as Secrets to the Key Vault
 
 # 3.1 Add the SignalR endpoint as a secret:
 
@@ -47,7 +47,7 @@ $identityName = "mi-$($prefix)-<managed-identity-name>"
 az identity create --name $identityName --resource-group $apiResourceGroup
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Step 5: Use Key vault Secrets in the Game API Container
+# Step 5: Use Key Vault Secrets in the Game API Container
 
 # 5.2 Apply the secrets as environment variables for your game API container:
 
