@@ -3,14 +3,16 @@
 # Exercise 1
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Step 1: Create an Azure Key Vault
+# Step 1: Create an Azure Key vault
 
-$keyVault = "<enter KeyVault name>"
+$kvResourceGroup = "rg-$($prefix)-<resource-group-name>"
+az group create --name $kvResourceGroup --location $location
 
-az keyvault create --name $keyVault --resource-group $apiResourceGroup
+$keyVault = "kv-$($prefix)-keys"
+az keyvault create --name $keyVault --resource-group $kvResourceGroup
 
 # ---------------------------------------------------------------------------------------------------------------------
-# Step 2: Assign Roles for Key Vault Access
+# Step 2: Assign Roles for Key vault Access
 
 # 2.1 Define your subscription information:
 
@@ -23,10 +25,10 @@ $subscriptionId = "<subscription-id>"
 az role assignment create `
   --assignee $subscriptionUPN `
   --role "Key Vault Secrets Officer" `
-  --scope "/subscriptions/$subscriptionId/resourceGroups/$apiResourceGroup/providers/Microsoft.KeyVault/vaults/$keyVault"
+  --scope "/subscriptions/$subscriptionId/resourceGroups/$kvResourceGroup/providers/Microsoft.KeyVault/vaults/$keyVault"
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Step 3: Add Your Endpoints as Secrets to the Key Vault
+# Step 3: Add Your Endpoints as Secrets to the Key vault
 
 # 3.1 Add the SignalR endpoint as a secret:
 
@@ -41,11 +43,11 @@ az keyvault secret set --name ACS --vault-name $keyVault --value $smtp
 
 # 4.1 Create a Managed Identity
 
-$Identity = "<managed-identity-name>"
-az identity create --name $Identity --resource-group $apiResourceGroup
+$identityName = "mi-$($prefix)-<managed-identity-name>"
+az identity create --name $identityName --resource-group $apiResourceGroup
 
 # ----------------------------------------------------------------------------------------------------------------------
-# Step 5: Use Key Vault Secrets in the Game API Container
+# Step 5: Use Key vault Secrets in the Game API Container
 
 # 5.2 Apply the secrets as environment variables for your game API container:
 

@@ -1,14 +1,14 @@
 # Exercise 1
 
-In this exercise, you will create an Azure Key Vault to securely store API endpoints as secrets, assign appropriate access roles, and set up a Managed Identity. You will then link these secrets to a game API container, ensuring the environment variables are securely configured, and deploy the containerized game application using Azure CLI.
+In this exercise, you will create an Azure Key vault to securely store API endpoints as secrets, assign appropriate access roles, and set up a Managed Identity. You will then link these secrets to a game API container, ensuring the environment variables are securely configured, and deploy the containerized game application using Azure CLI.
 
 ## Estimated time: TODO minutes
 
 ## Learning objectives
 
-- Create and Configure Azure Key Vault
+- Create and Configure Azure Key vault
 - Assign Roles for Secure Access
-- Manage and Add Secrets to Key Vault
+- Manage and Add Secrets to Key vault
 - Set Up Managed Identity for Secure Access
 - Use Secrets in a Game API Container
 - Deploy and Configure a Container Application
@@ -25,13 +25,13 @@ During this module you will also need 7 of the PowerShell variables used previou
 - $gameContainerUrl -  URL for your Game Container API
 - $botContainerUrl - URL for your Bot Container API
 
-## Step 1: Create an Azure Key Vault
+## Step 1: Create an Azure Key vault
 
 Choose a name for your KeyVault and follow the commands from the .ps1 file
 
-## Step 2: Assign Roles for Key Vault Access
+## Step 2: Assign Roles for Key vault Access
 
-Assign the necessary roles to allow access to the Key Vault.
+Assign the necessary roles to allow access to the Key vault.
 
 ### 2.1. Define your subscription information
 
@@ -40,9 +40,9 @@ Assign the necessary roles to allow access to the Key Vault.
 
 ### 2.2 Create a role assignment for Key Vault Secrets Officer
 
-## Step 3: Add Your Endpoints as Secrets to the Key Vault
+## Step 3: Add Your Endpoints as Secrets to the Key vault
 
-Store your endpoints as secrets in the Key Vault:
+Store your endpoints as secrets in the Key vault:
 
 ### 3.1 Add the SignalR endpoint as a secret
 
@@ -50,25 +50,45 @@ Store your endpoints as secrets in the Key Vault:
 
 ## Step 4: Create a Managed Identity and Assign Roles
 
-### 4.1 Create a Managed Identity using the following script
+A Managed Identity is a secure way to authenticate with Azure services. You will create a Managed Identity and assign it the necessary roles to access the Key vault.
+
+### 4.1 Create a Managed Identity using the script
+
+[Exercise1.ps1](./Exercise1.ps1)
 
 ### 4.2 Using [Azure Portal](https://portal.azure.com/)
 
 - Navigate to Azure role assignments.
-- Create a new role assignment for the Key Vault named **Key Vault Secrets Officer** and assign it to your Managed Identity.
+- Create a new role assignment for the Key vault named **Key Vault Secrets Officer** and assign it to your Managed Identity.
 
 ![Create Role Assignment](../module-6-microservices-architecture/images/image1.png)
 
-## Step 5: Use Key Vault Secrets in the Game API Container
+### 4.3 Associate the Managed Identity with the Game API Container
+
+1. In the Game API container, navigate to the **Identity** tab.
+2. Select user-assigned identity and add the Managed Identity you created.
+
+The container app now has permission to use the access granted to the Managed Identity, which includes access to the Key vault secrets.
+
+## Step 5: Use Key vault Secrets in the Game API Container
+
+We will now configure the Game API container to use the secrets stored in the Key vault by adding them as secrets to the container.
+
+We store a reference to the secret in the Key vault in the container secrets section.
+The container will use the access given to the managed identity to retrieve the secret from the Key vault.
 
 ### 5.1 Using [Azure Portal](https://portal.azure.com/)
 
-- Go to the **Secrets** section under the settings tab of your Key Vault.
+- Go to the **Secrets** section under the settings tab of your Key vault.
 - Add a secret named **acsconnectionstring**.
-  - For the Key Vault Secret URL, copy the URL of the ACS secret you created.
+  - For the Key vault Secret URL, copy the URL of the ACS secret you created.
   - Link it to the Managed Identity created in the previous step.
 - Repeat the process for **signalrconnectionstring** to add your SignalR endpoint secret.
 
 ![Key vault secret signalrconnectionstring](../module-6-microservices-architecture/images/image2.png)
 
 ### 5.2 Use the .ps1 command to apply the secrets as environment variables for your game API container
+
+The game API container will now use an environment variable to tell it what secrets it should use.
+
+[Exercise1.ps1](./Exercise1.ps1)
