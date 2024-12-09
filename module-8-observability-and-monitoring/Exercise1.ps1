@@ -30,7 +30,7 @@ az extension add --name application-insights
 
 az monitor app-insights component create `
   --app $insightsName `
-  --resource-group $apiResourceGroup `
+  --resource-group $appResourceGroup `
   --location $location `
   --workspace $workspaceId
 
@@ -39,7 +39,7 @@ az monitor app-insights component create `
 # ---------------------------------------------------------------------------------------------------------------------
 ## Step 2: Redeploy the Static Web App with the new version
 
-# 2.2 Redeploy your Static Web App, and add the **INSIGHTS_CONNECTION_STRING** Environment Variable. Set its value to be the Connection String you just copied.
+### 2.2 Redeploy your Static Web App with the **INSIGHTS_CONNECTION_STRING** Environment Variable
 
 $applicationInsightsConStr = "<application-insights-connection-string>"
 

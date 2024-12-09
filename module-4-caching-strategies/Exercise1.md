@@ -39,7 +39,7 @@ To deploy the StatsAPI container, run the commands from [Exercise.ps1](./Exercis
 
 ## Step 2: Add StatsAPI to Azure API Management
 
-With the StatsAPI up and running, you can now add it to the APIM:
+With the StatsAPI up and running, add it to the APIM:
 
 1. Open the [Azure Portal](https://portal.azure.com/).
 2. Navigate to your APIM resource.

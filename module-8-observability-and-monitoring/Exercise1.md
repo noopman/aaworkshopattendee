@@ -46,12 +46,12 @@ To deploy the version of the app with the Application Insights functionality, yo
 | app_location | /module-8-observability-and-monitoring/Exercise_1/RockPaperScissors |
 | api_location | /module-8-observability-and-monitoring/Exercise_1/RockPaperScissorsAPI |
 
-You need to copy the Connection String of your resource. You can find it in the [Azure portal](https://portal.azure.com), by navigating to your newly created Application Insights resource, on the **Overview** tab next to **Connection String**.
+### 2.2 Redeploy your Static Web App with the **INSIGHTS_CONNECTION_STRING** Environment Variable
 
-### 2.2 Redeploy your Static Web App, and add the **INSIGHTS_CONNECTION_STRING** Environment Variable. Set its value to be the Connection String you just copied
+Copy the Connection String of your Application Insights resource. It is located in the [Azure portal](https://portal.azure.com) on the newly created Application Insights resource. On the **Overview** tab next to **Connection String**.
 
 ## Step 3: Test the application and check Application Insights for events
 
-Now you can play around with your web application and it should automatically record events inside Application Insights.
+When you play the game it should automatically record events in Application Insights. The data is stored in the log analytics workspace you created.
 
-Open the [Azure portal](https://portal.azure.com) and navigate to your Application Insights Resource. You can now check the usage of the application, under the Usage tab. You can see the number of users of your application, or events regarding how they use the app, which pages they access etc.
+Open the [Azure portal](https://portal.azure.com) and navigate to your Application Insights Resource. Check the usage of the application, under the Usage tab. You see the number of users of your application, and events about how they use the app, which pages they access etc.

@@ -25,4 +25,4 @@ and enter the following command:
 
 After running the commands, the two projects should run in the background. To stop them from running, you can press `CTRL+C`.
 
-With the APIs running, you can now run the Web app.
+With the APIs running, run the Web app.
