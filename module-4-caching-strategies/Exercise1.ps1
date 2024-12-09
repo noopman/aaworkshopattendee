@@ -9,10 +9,8 @@ $statsApi = "<stats-container-name>"
 
 $dConnection = "<DB-connection-string>"
 
-#! What is this value supposed to be?
 $TTL = "<data-time-to-live-seconds>"
 
-#! This deploys but it crashes. What is the issue?
 az containerapp create `
   --name $statsApi `
   --resource-group $apiResourceGroup `

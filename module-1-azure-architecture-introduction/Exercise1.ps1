@@ -117,17 +117,6 @@ az staticwebapp create `
 
 # 2.2 Configure an environment variable to connect your Static Web App with your game Container Api.
 
-# Hostname of game container url.
-$gameContainerHN = az containerapp show --resource-group $apiResourceGroup --name $gameApi |
-  ConvertFrom-Json |
-  Select-Object -ExpandProperty properties |
-  Select-Object -ExpandProperty configuration |
-  Select-Object -ExpandProperty ingress |
-  Select-Object -ExpandProperty fqdn
-
-# Url created on game api container. (You can get this from the Azure Portal.)
-$gameContainerUrl = "https://$gameContainerHN"
-
 # Hostname of bot container url.
 function Get-ContainerAppFqdn {
   param (
@@ -141,6 +130,12 @@ function Get-ContainerAppFqdn {
     Select-Object -ExpandProperty ingress |
     Select-Object -ExpandProperty fqdn
 }
+
+# Hostname of game container url.
+$gameContainerHN = Get-ContainerAppFqdn -resourceGroup $apiResourceGroup -containerAppName $gameApi
+
+# Url created on game api container. (You can get this from the Azure Portal.)
+$gameContainerUrl = "https://$gameContainerHN"
 
 $botContainerHN = Get-ContainerAppFqdn -resourceGroup $apiResourceGroup -containerAppName $botApi
 
