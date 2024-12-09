@@ -24,7 +24,7 @@ During this module you will also need the following PowerShell variables used pr
 
 ### 1.1 Deploy a Log Analytics Workspace Resource and save its ID
 
-In order to use an Application Insights resource, it is recommended to link it to a Log Analytics Workspace. You can also deploy a standalone Application Insights, but it's deprecated and not available on some regions. You will deploy a Log Analytics Workspace so you won't have any issues with this exercise.
+To use an Application Insights resource, it is recommended to link it to a Log Analytics Workspace. You can also deploy a standalone Application Insights, but it's deprecated and not available on some regions. You will deploy a Log Analytics Workspace so you won't have any issues with this exercise.
 
 ### 1.2 Name your Application Insights Resource
 
@@ -35,7 +35,7 @@ In order to use an Application Insights resource, it is recommended to link it t
 
 ## Step 2: Redeploy the Static Web App with the new version
 
-Now you will need to redeploy the Web App with the new code in order to communicate with the Application Insights resource.
+Now you will need to redeploy the Web App with the new code to communicate with the Application Insights resource.
 
 ### 2.1 Reconfigure the deployment workflow
 

@@ -39,3 +39,13 @@ az containerapp up `
 $apimUrl = "<your-apim-url>"
 
 az staticwebapp appsettings set --name $staticWebName --setting-names "GAMEAPI_URL=$gameContainerUrl" "APIM_URL=$apimUrl"
+
+#----------------------------------------------------------------------------------------------------------------------
+# Step 5:
+
+# 2.2 Check the status of the APIM resource
+
+az apim show `
+  --name $apimName `
+  --resource-group $emailResourceGroup `
+  --query 'provisioningState'

@@ -1,6 +1,6 @@
 # Module 2 Exercise 1
 
-In this exercise, you will add real-time functionality to the app by using an [**Azure SignalR**](https://learn.microsoft.com/en-us/azure/azure-signalr/signalr-overview) resource. You will also add an [**Azure Communication Service**](https://learn.microsoft.com/en-us/azure/communication-services/overview) resource for using a SMTP(Simple Mail Transfer Protocol) in order to invite your friends via email and getting notified about session results.
+In this exercise, you will add real-time functionality to the app by using an [**Azure SignalR**](https://learn.microsoft.com/en-us/azure/azure-signalr/signalr-overview) resource. You will also add an [**Azure Communication Service**](https://learn.microsoft.com/en-us/azure/communication-services/overview) resource for using a SMTP(Simple Mail Transfer Protocol) to invite your friends via email and getting notified about session results.
 
 SignalR is a library for ASP.NET that enables web apps to have real-time functionalities. If you want to learn more about SignalR [click here](https://learn.microsoft.com/en-us/aspnet/signalr/overview/getting-started/introduction-to-signalr).
 
@@ -38,30 +38,34 @@ If you don't have the PowerShell variables in your chosen terminal anymore, plea
 
 To use SignalR in your applications, you need to first deploy an Azure SignalR Service so that the hub will be hosted on the cloud.
 
-1. Give a name to your SignalR Resource.
-2. Create the SignalR resource.
+### 1.1 Give a name to your SignalR Resource
+
+### 1.2. Create the SignalR resource
 
 ## Step 2: Copy the Connection String of the SignalR Service
 
 To get the connection string of your SignalR Service, you need to access the newly created resource in the [Azure Portal](https://portal.azure.com/).
 
-1. Navigate to your SignalR Service Resource. You should find it in the resource group where you created it.
-2. In the side menu, under **Settings**, you should find the **Connection Strings** tab.
-3. Copy the Primary Connection String from the **For access key** section.
-4. Set the Connection String inside your console.
+### 2.1 Navigate to your SignalR Service Resource. You should find it in the resource group where you created it
+
+### 2.2 In the side menu, under **Settings**, you should find the **Connection Strings** tab
+
+### 2.3 Copy the Primary Connection String from the **For access key** section
+
+### 2.4 Set the Connection String inside your console
 
 ## Step 3: Create an Azure Communication Service resource
 
-1. In order to send e-mails to the users of the application, you will need an Azure Communication Service with SMTP capabilities.
+### 3.1 To send e-mails to the users of the application, you will need an Azure Communication Service with SMTP capabilities.
 
     If you want to choose a different region for your Azure Communication Service **"--data-location"**, you can review the available regions [here](https://learn.microsoft.com/en-us/azure/communication-services/concepts/privacy#data-residency)
 
     > [!NOTE]
     > On the first use of this az command, the terminal might request to install the communication extension, if so, please agree with the install and the command will continue to run after the extension is installed.
 
-2. Azure Communication Service has multiple ways of client communication. In order to use the email functionality, you will need an **Azure Email Communication Service**.
+### 3.2. Azure Communication Service has multiple ways of client communication. To use the email functionality, you will need an **Azure Email Communication Service**
 
-3. The Email Communication Service also needs a **Email Communication Services Domain** in order to use it for sending emails.
+### 3.3. The Email Communication Service also needs a **Email Communication Services Domain** to use it for sending emails
 
 ## Step 4: Set the Connection String and the Sender Address and redeploy the apps
 
@@ -79,7 +83,7 @@ To see the changes of the application, you will have to redeploy the API's conta
 
    Then, you can change the environment variables of the Static Web App with the new SignalR connection string and the sender email address.
 
-5. Update the Environment Variables of the Static Web App in order to use SignalR
+5. Update the Environment Variables of the Static Web App to use SignalR
 
 ## Step 5: Add your domain to Communication Service
 

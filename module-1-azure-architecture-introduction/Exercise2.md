@@ -25,7 +25,7 @@ To solve this exercise you can either implement the Circuit Breaker yourself, or
 
 3. Inside the same project, open Services/BotService.cs. This will be where you will implement the logic for the Circuit Breaker.
 
-4. You should modify the code in the BotService class in order to implement the Circuit Breaker. It should look something like this:
+4. Modify the code in the BotService class to implement the Circuit Breaker. It should look something like this:
 
 ````c#
 public class BotService : IBotService

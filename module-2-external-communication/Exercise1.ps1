@@ -170,7 +170,7 @@ az containerapp up `
 
 #! Should not the containers in the other locations be updated as well?
 
-# 4.5. Update the Environment Variables of the Static Web App in order to use SignalR
+# 4.5. Update the Environment Variables of the Static Web App to use SignalR
 
 az staticwebapp appsettings set `
   --name $staticWebName `

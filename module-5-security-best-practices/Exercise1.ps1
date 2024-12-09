@@ -17,7 +17,7 @@ az network vnet subnet update `
   --vnet-name $vnetName `
   --disable-private-endpoint-network-policies true
 
-# 2. You need to save the Resource ID for the CosmosDB in order to create a private endpoint.
+# 2. You need to save the Resource ID for the CosmosDB to create a private endpoint.
 
 $cosmosDbId = az cosmosdb show -n $cosmosDbAccount -g $DBResourceGroup --query id --output tsv
 

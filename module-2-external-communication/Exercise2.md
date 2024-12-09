@@ -72,17 +72,22 @@ Use commands from [Exercise2.ps1](./Exercise2.ps1)
 
 Now you can secure the traffic of your API by enabling SSL Termination for the APIM.
 
-1. Navigate to your APIM resource
+### 5.1. Navigate to your APIM resource
 
-2. Go to **Protocols + ciphers** under **Security** tab and **enable SSL** for both **Client protocol** and **Backend protocol**. Make sure to click **Enable** before saving. After that, press the **Save** button.
+### 5.2 Configure SSL Termination
+
+Go to **Protocols + ciphers** under **Security** tab and **enable SSL** for both **Client protocol** and **Backend protocol**. Make sure to click **Enable** before saving. After that, press the **Save** button.
 
 ![APIM Security settings for Protocols + ciphers: enable SSL](../module-2-external-communication/images/image6.png)
 
 Now the traffic will be secure, making the data unreadable if it's intercepted.
 
+> [!NOTE]
+> In case the update takes time you can check the progress from the az cli using the command in [Exercise2.ps1](./Exercise2.ps1).
+
 ## Step 6: Implement rate throttling
 
-In order to implement rate throttling for the APIs inside your APIM resource, you need to add a policy.
+To implement rate throttling for the APIs inside your APIM resource, you need to add a policy.
 
 - On the **APIs** tab, select either the bot or game API, or select both by choosing **All APIs**. Here, you will click **Add policy** under **Inbound processing**. Then, add a **rate-limit-by-key** policy, completing the fields with values for rate throttling as shown in this example:
 

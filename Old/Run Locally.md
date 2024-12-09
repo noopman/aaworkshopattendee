@@ -1,8 +1,8 @@
 # Running the API Projects
 
-In order to run the Game API and the Bot API locally, you need to have **[dapr CLI](https://docs.dapr.io/getting-started/install-dapr-cli/)** installed on your machine
+To run the Game API and the Bot API locally, you need to have **[dapr CLI](https://docs.dapr.io/getting-started/install-dapr-cli/)** installed on your machine
 
-After installing the dapr CLI, you need to **[initialize dapr](https://docs.dapr.io/getting-started/install-dapr-selfhost/)**. In order to initialize it, make sure that **[Docker](https://www.docker.com/products/docker-desktop/)** is installed and the Docker Engine is running.
+After installing the dapr CLI, you need to **[initialize dapr](https://docs.dapr.io/getting-started/install-dapr-selfhost/)**. To initialize it, make sure that **[Docker](https://www.docker.com/products/docker-desktop/)** is installed and the Docker Engine is running.
 
 After you initialized dapr, you can run the API projects by opening a terminal for each of the projects that run dapr.
 
