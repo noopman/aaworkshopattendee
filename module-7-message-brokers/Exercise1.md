@@ -24,7 +24,7 @@ During this module you will also need the following PowerShell variables used pr
 - $gameContainerUrl - URL for your Game Container API.
 - $botContainerUrl - url of your Bot API container.
 - $signalrEndpoint - endpoint for your Azure SignalR Resource.
-- $StatsContainerUrl - url of your Stats API container.
+- $statsContainerUrl - url of your Stats API container.
 - $smtp - connection string of your Azure Communication Service deployed in Module 2.
 - $senderDnR - your noreply email from the Email Communication Service Domain resource deployed in Module 2.
 - $TTL - time-to-live for your database documents.

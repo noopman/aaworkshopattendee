@@ -59,7 +59,7 @@ az containerapp up `
   --registry-server ghcr.io `
   --registry-username $gitRepositoryOwner `
   --registry-password $gitPAT `
-  --env-vars GAME_API_SIGNALR=$signalrEndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$smtp GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$StatsContainerUrl GAME_API_EVENT_GRID_ENDPOINT=$eventGridEndpoint GAME_API_EVENT_GRID_KEY=$eventGridKey
+  --env-vars GAME_API_SIGNALR=$signalrEndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$smtp GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$statsContainerUrl GAME_API_EVENT_GRID_ENDPOINT=$eventGridEndpoint GAME_API_EVENT_GRID_KEY=$eventGridKey
 
 # ---------------------------------------------------------------------------------------------------------------------
 # Step 3: Create a subscription for your StatsAPI

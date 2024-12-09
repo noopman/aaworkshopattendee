@@ -25,7 +25,7 @@ az containerapp create `
 # ----------------------------------------------------------------------------------------------------------------------
 # Step 3: Redeploy GameAPI and the web app
 
-$StatsContainerUrl = "<stats-container-url>"
+$statsContainerUrl = "<stats-container-url>"
 
 az containerapp up `
   --name $gameApi `
@@ -33,4 +33,4 @@ az containerapp up `
   --image ghcr.io/$gitRepositoryOwner/gameapi-rockpaperscissors:module4-ex1 `
   --registry-server ghcr.io `
   --registry-username $gitRepositoryOwner --registry-password $gitPAT `
-  --env-vars GAME_API_SIGNALR=$signalrEndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$smtp GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$StatsContainerUrl
+  --env-vars GAME_API_SIGNALR=$signalrEndpoint GAME_API_BOTAPI=$botContainerUrl GAME_API_HOST=$gameContainerUrl GAME_API_SMTPSERVER=$smtp GAME_API_SMTP_SENDER=$senderDnR GAME_API_STATSAPI=$statsContainerUrl
